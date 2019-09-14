@@ -2,6 +2,7 @@
     TaskName = 'MyTaskName1'
     TaskPath = '\MyTaskFolder\'
     Triggers = @{
+        # AtStartup = $true
         At = @{
             Year = 1999
             Month = 11
@@ -39,6 +40,7 @@
     TaskName = 'MyTaskName2'
     TaskPath = '\MyTaskFolder\'
     Triggers = @{
+        # AtStartup = $true
         At = @{
             Year = 1999
             Month = 11
@@ -76,6 +78,7 @@
     TaskName = 'MyTaskName3'
     TaskPath = '\MyTaskFolder\'
     Triggers = @{
+        # AtStartup = $true
         At = @{
             Year = 1999
             Month = 11
