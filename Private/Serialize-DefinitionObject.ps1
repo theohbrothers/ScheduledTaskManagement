@@ -1,4 +1,4 @@
-function Serialize-ScheduledTaskDefinition {
+function Serialize-DefinitionObject {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipeline,ValueFromPipelineByPropertyName)]

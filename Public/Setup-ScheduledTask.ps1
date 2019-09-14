@@ -33,7 +33,7 @@ function Setup-ScheduledTask {
             "Serializing task definition:" | Write-Verbose
             $_ | Out-String | Write-Verbose
             try {
-                Serialize-ScheduledTaskDefinition -DefinitionObject $_
+                Serialize-DefinitionObject -DefinitionObject $_
             }catch {
                 $_ | Write-Error
             }
