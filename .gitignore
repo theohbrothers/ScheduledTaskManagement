@@ -1,4 +1,4 @@
 /.*
 tests/
 !.gitignore
-!tasks.ps1.sample
+!definition.ps1.sample
