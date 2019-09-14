@@ -8,17 +8,29 @@ function Apply-ScheduledTask {
     begin {
         try {
             # Prepare scheduled task args based on definition object
-            $triggerArgs = $DefinitionObject['Triggers']
-            $actionArgs = $DefinitionObject['Action']
-            $settingsArgs = $DefinitionObject['Settings']
-            $principalArgs = $DefinitionObject['Principal']
             $scheduledTaskArgs = @{
                 TaskName = $DefinitionObject['TaskName']
                 TaskPath = $DefinitionObject['TaskPath']
-                Trigger = New-ScheduledTaskTrigger @triggerArgs
-                Action = New-ScheduledTaskAction @actionArgs
-                Settings = New-ScheduledTaskSettingsSet @settingsArgs
-                Principal = New-ScheduledTaskPrincipal @principalArgs
+                Trigger = @(
+                        $DefinitionObject['Triggers'].GetEnumerator() | % {
+                        $args = $_
+                        New-ScheduledTaskTrigger @args
+                    }
+                )
+                Action = @(
+                        $DefinitionObject['Action'].GetEnumerator() | % {
+                        $args = $_
+                        New-ScheduledTaskAction @args
+                    }
+                )
+                Settings = $(
+                    $args = $DefinitionObject['Settings']
+                    New-ScheduledTaskSettingsSet @args
+                )
+                Principal = $(
+                    $args = $DefinitionObject['Principal']
+                    New-ScheduledTaskPrincipal @args
+                )
             }
         }catch {
             throw

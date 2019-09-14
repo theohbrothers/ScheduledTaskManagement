@@ -11,15 +11,24 @@ function Serialize-DefinitionObject {
         try {
             # Serialize proerties with appropriate object values for use by scheduledtasks cmdlets
             if ($DefinitionObject['Triggers']) {
-                $DefinitionObject['Triggers'].GetEnumerator() | % {
-                   if ($_.Key -eq 'At') {
-                        $d = $_.Value
-                        $SerializedObject['Triggers'][$_.Key] = Get-Date @d
-                   }elseif ($_.Key -eq 'RepetitionInterval') {
-                        $t = $_.Value
-                        $SerializedObject['Triggers'][$_.Key] = New-Timespan @t
-                   }
-               }
+                $SerializedObject['Triggers'] = @(
+                    $DefinitionObject['Triggers'] | % {
+                        $trigger = $_
+                        $triggerTemp = @{}
+                        $trigger.GetEnumerator() | % {
+                            if ($_.Key -eq 'At') {
+                                $d = $_.Value
+                                $triggerTemp[$_.Key] = Get-Date @d
+                            }elseif ($_.Key -eq 'RepetitionInterval') {
+                                $t = $_.Value
+                                $triggerTemp[$_.Key] = New-Timespan @t
+                            }else {
+                                $triggerTemp[$_.Key] = $_.Value
+                            }
+                        }
+                        $triggerTemp
+                    }
+                )
            }
         }catch {
             throw
