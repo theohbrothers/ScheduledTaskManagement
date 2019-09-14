@@ -1,4 +1,5 @@
 function Validate-DefinitionObject {
+    [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipeline,ValueFromPipelineByPropertyName)]
         [ValidateNotNullOrEmpty()]
