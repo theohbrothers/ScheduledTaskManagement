@@ -1,4 +1,3 @@
-
 function Setup-ScheduledTask {
     [CmdletBinding()]
     Param(
