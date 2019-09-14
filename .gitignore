@@ -1,3 +1,4 @@
 /.*
+tests/
 !.gitignore
 !tasks.ps1.sample
