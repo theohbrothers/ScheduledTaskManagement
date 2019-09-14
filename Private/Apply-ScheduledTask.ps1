@@ -12,7 +12,7 @@ function Apply-ScheduledTask {
                 TaskName = $DefinitionObject['TaskName']
                 TaskPath = $DefinitionObject['TaskPath']
                 Trigger = @(
-                        $DefinitionObject['Triggers'].GetEnumerator() | % {
+                        $DefinitionObject['Trigger'].GetEnumerator() | % {
                         $args = $_
                         New-ScheduledTaskTrigger @args
                     }

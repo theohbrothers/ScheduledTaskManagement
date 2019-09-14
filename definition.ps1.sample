@@ -1,7 +1,7 @@
 @{
     TaskName = 'MyTaskName1'
     TaskPath = '\MyTaskFolder\'
-    Triggers = @(
+    Trigger = @(
         @{
             AtStartup = $true
             # At = @{
@@ -66,7 +66,7 @@
 @{
     TaskName = 'MyTaskName2'
     TaskPath = '\MyTaskFolder\'
-    Triggers = @(
+    Trigger = @(
         @{
             # AtStartup = $true
             At = @{
@@ -112,7 +112,7 @@
 @{
     TaskName = 'MyTaskName3'
     TaskPath = '\MyTaskFolder\'
-    Triggers = @(
+    Trigger = @(
         @{
             # AtStartup = $true
             At = @{

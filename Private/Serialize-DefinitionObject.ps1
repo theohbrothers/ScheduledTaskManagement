@@ -10,9 +10,9 @@ function Serialize-DefinitionObject {
     }process {
         try {
             # Serialize proerties with appropriate object values for use by scheduledtasks cmdlets
-            if ($DefinitionObject['Triggers']) {
-                $SerializedObject['Triggers'] = @(
-                    $DefinitionObject['Triggers'] | % {
+            if ($DefinitionObject['Trigger']) {
+                $SerializedObject['Trigger'] = @(
+                    $DefinitionObject['Trigger'] | % {
                         $trigger = $_
                         $triggerTemp = @{}
                         $trigger.GetEnumerator() | % {
