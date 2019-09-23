@@ -4,12 +4,12 @@ function Setup-ScheduledTask {
         [Parameter(ParameterSetName='DefinitionFile',ValueFromPipeline,Mandatory=$true)]
         [ValidateScript({Test-Path $_ -PathType Leaf})]
         [ValidateNotNullOrEmpty()]
-        [object]$DefinitionFile
+        [string[]]$DefinitionFile
     ,
         [Parameter(ParameterSetName='DefinitionPath',ValueFromPipeline,Mandatory=$true)]
         [ValidateScript({Test-Path $_ -PathType Container})]
         [ValidateNotNullOrEmpty()]
-        [object]$DefinitionDirectory
+        [string[]]$DefinitionDirectory
     )
     try {
         # Import definitions as an array of hashtable definitions
