@@ -1,5 +1,5 @@
 function Setup-ScheduledTask {
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName='DefinitionFile')]
     Param(
         [Parameter(ParameterSetName='DefinitionFile',ValueFromPipeline,Mandatory=$true)]
         [ValidateScript({Test-Path $_ -PathType Leaf})]
