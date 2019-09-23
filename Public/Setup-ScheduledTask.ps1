@@ -28,6 +28,10 @@ function Setup-ScheduledTask {
                                             Get-ChildItem $DefinitionDirectory -File | ? { $_.Extension -eq '.ps1' }
                                         }
         }
+        if (!$DefinitionFileCollection) {
+            "No definitions could be found from the specified definition files or directories." | Write-Error
+            return
+        }
         $DefinitionFileCollection | % {
             $definition = if ($AsJson) {
                                 Get-Content -Path $_.FullName | ConvertFrom-Json | ConvertTo-Hashtable
