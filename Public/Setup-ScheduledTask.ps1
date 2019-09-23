@@ -1,5 +1,5 @@
 function Setup-ScheduledTask {
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName='DefinitionFile')]
     Param(
         [Parameter(ParameterSetName='DefinitionFile',ValueFromPipeline,Mandatory=$true)]
         [ValidateScript({Test-Path $_ -PathType Leaf})]
@@ -10,6 +10,11 @@ function Setup-ScheduledTask {
         [ValidateScript({Test-Path $_ -PathType Container})]
         [ValidateNotNullOrEmpty()]
         [string[]]$DefinitionDirectory
+    ,
+        [Parameter(ParameterSetName='AsJson',Mandatory=$false)]
+        [Parameter(ParameterSetName='DefinitionFile')]
+        [Parameter(ParameterSetName='DefinitionPath')]
+        [switch]$AsJson
     )
     try {
         # Import definitions as an array of hashtable definitions
@@ -17,10 +22,22 @@ function Setup-ScheduledTask {
         if ($DefinitionFile) {
             $DefinitionFileCollection = Get-Item $DefinitionFile
         }elseif ($DefinitionDirectory) {
-            $DefinitionFileCollection = Get-ChildItem $DefinitionDirectory -File | ? { $_.Extension -eq '.ps1' }
+            $DefinitionFileCollection = if ($AsJson) {
+                                            Get-ChildItem $DefinitionDirectory -File | ? { $_.Extension -eq '.json' }
+                                        }else {
+                                            Get-ChildItem $DefinitionDirectory -File | ? { $_.Extension -eq '.ps1' }
+                                        }
+        }
+        if (!$DefinitionFileCollection) {
+            "No definitions could be found from the specified definition files or directories." | Write-Error
+            return
         }
         $DefinitionFileCollection | % {
-            $definition = . $_.FullName
+            $definition = if ($AsJson) {
+                                Get-Content -Path $_.FullName | ConvertFrom-Json | ConvertTo-Hashtable
+                          }else {
+                              . $_.FullName
+                          }
             $definition | % {
                 $definitionValidated = $_ | Validate-DefinitionObject
                 if ($definitionValidated) { $DefinitionsCollection.Add($definitionValidated) | Out-Null }
