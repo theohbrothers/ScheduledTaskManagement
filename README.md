@@ -18,4 +18,5 @@ Setup-ScheduledTask -DefinitionDirectory "C:\path\to\definition\directory\" -AsJ
 
 ## Tips
 
+- Both `-DefinitionFile` and `-DefinitionDirectory` accept an array of paths.
 - You can use the `-Verbose` for verbose output.
