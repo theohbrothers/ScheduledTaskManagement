@@ -1,7 +1,7 @@
-# Setup-ScheduledTask
+# ScheduledTaskManagement
 
 ```powershell
-Import-Module .\Setup-ScheduledTask.psm1 -Force
+Import-Module .\src\ScheduledTaskManagement\ScheduledTaskManagement.psm1 -Force -Verbose
 
 # .ps1 definition file
 Setup-ScheduledTask -DefinitionFile "C:\path\to\definition.ps1"
