@@ -1,4 +1,0 @@
-/.*
-tests/
-!.gitignore
-!definition.ps1.sample
