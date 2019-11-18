@@ -3,7 +3,7 @@ function Validate-DefinitionObject {
     Param (
         [Parameter(ValueFromPipeline=$true, ValueFromPipelineByPropertyName=$true)]
         [ValidateNotNullOrEmpty()]
-        $InputObject
+        [object]$InputObject
     )
     $InputObject | % {
         if ($_.GetType() -ne [hashtable]) {
