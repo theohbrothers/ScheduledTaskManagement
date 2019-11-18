@@ -1,17 +1,17 @@
 function Setup-ScheduledTask {
     [CmdletBinding(DefaultParameterSetName='DefinitionFile')]
     Param(
-        [Parameter(ParameterSetName='DefinitionFile',ValueFromPipeline,Mandatory=$true)]
+        [Parameter(ParameterSetName='DefinitionFile', Mandatory=$true, ValueFromPipeline=$true)]
         [ValidateScript({Test-Path $_ -PathType Leaf})]
         [ValidateNotNullOrEmpty()]
         [string[]]$DefinitionFile
     ,
-        [Parameter(ParameterSetName='DefinitionPath',ValueFromPipeline,Mandatory=$true)]
+        [Parameter(ParameterSetName='DefinitionPath', Mandatory=$true, ValueFromPipeline=$true)]
         [ValidateScript({Test-Path $_ -PathType Container})]
         [ValidateNotNullOrEmpty()]
         [string[]]$DefinitionDirectory
     ,
-        [Parameter(ParameterSetName='AsJson',Mandatory=$false)]
+        [Parameter(ParameterSetName='AsJson', Mandatory=$false)]
         [Parameter(ParameterSetName='DefinitionFile')]
         [Parameter(ParameterSetName='DefinitionPath')]
         [switch]$AsJson

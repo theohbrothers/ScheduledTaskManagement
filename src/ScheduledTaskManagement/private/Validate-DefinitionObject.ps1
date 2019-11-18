@@ -1,7 +1,7 @@
 function Validate-DefinitionObject {
     [CmdletBinding()]
     Param (
-        [Parameter(ValueFromPipeline,ValueFromPipelineByPropertyName)]
+        [Parameter(ValueFromPipeline=$true, ValueFromPipelineByPropertyName=$true)]
         [ValidateNotNullOrEmpty()]
         $InputObject
     )

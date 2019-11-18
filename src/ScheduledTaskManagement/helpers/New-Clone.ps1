@@ -2,7 +2,7 @@
 function New-Clone {
     param (
         # Parameter help description
-        [Parameter(ValueFromPipeline)]
+        [Parameter(ValueFromPipeline=$true)]
         [object]$InputObject
     )
 
