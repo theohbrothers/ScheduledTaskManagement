@@ -1,9 +1,9 @@
 function Validate-DefinitionObject {
     [CmdletBinding()]
     Param (
-        [Parameter(ValueFromPipeline,ValueFromPipelineByPropertyName)]
+        [Parameter(ValueFromPipeline=$true, ValueFromPipelineByPropertyName=$true)]
         [ValidateNotNullOrEmpty()]
-        $InputObject
+        [object]$InputObject
     )
     $InputObject | % {
         if ($_.GetType() -ne [hashtable]) {

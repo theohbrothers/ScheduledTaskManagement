@@ -1,3 +1,5 @@
+Set-StrictMode -Version Latest
+
 ##################
 # Module globals #
 ##################
@@ -10,9 +12,9 @@ $script:MODULE['PRIVATE_DIR'] = Join-Path $script:MODULE['BASE_DIR'] 'Private'  
 $script:MODULE['HELPERS_DIR'] = Join-Path $script:MODULE['BASE_DIR'] 'helpers'        # Module helpers
 
 # Load vendor, Public, Private, classes, helpers
-Get-ChildItem "$( $script:MODULE['PUBLIC_DIR'] )/*.ps1"  | % { . $_.FullName }
-Get-ChildItem "$( $script:MODULE['PRIVATE_DIR'] )/*.ps1" | % { . $_.FullName }
-Get-ChildItem "$( $script:MODULE['HELPERS_DIR'] )/*.ps1" | % { . $_.FullName }
+Get-ChildItem -Path "$($script:MODULE['PUBLIC_DIR'])\*.ps1" | % { . $_.FullName }
+Get-ChildItem -Path "$($script:MODULE['PRIVATE_DIR'])\*.ps1" | % { . $_.FullName }
+Get-ChildItem -Path "$($script:MODULE['HELPERS_DIR'])\*.ps1" | % { . $_.FullName }
 
 # Export Public functions
-Export-ModuleMember -Function @( Get-ChildItem "$( $script:MODULE['PUBLIC_DIR'] )/*.ps1" | Select-Object -ExpandProperty BaseName )
+Export-ModuleMember -Function (Get-ChildItem "$($script:MODULE['PUBLIC_DIR'] )\*.ps1" | Select-Object -ExpandProperty BaseName)
