@@ -6,9 +6,9 @@ function Serialize-DefinitionObject {
         [hashtable]$DefinitionObject
     )
     begin {
-        $SerializedObject = $DefinitionObject | New-Clone
     }process {
         try {
+            $SerializedObject = $DefinitionObject.Clone()
             # Serialize proerties with appropriate object values for use by scheduledtasks cmdlets
             if ($DefinitionObject['Trigger']) {
                 $SerializedObject['Trigger'] = @(
