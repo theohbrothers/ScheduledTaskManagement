@@ -16,35 +16,6 @@ try {
     }
     Get-Module Pester -ListAvailable
 
-    if ($env:OS -ne 'Windows_NT') {
-        if ($IsLinux) {
-            "Installing dependencies for linux" | Write-Host
-
-            # Provisioning script block
-            $provisionScriptBlock = {
-                $sudo = sh -c 'command -v sudo'
-                $shellBin = sh -c 'command -v bash || command -v sh'
-                $sudo | Write-Host
-                $shellBin | Write-Host
-                "Shell command:" | Write-Verbose
-                $script:shellArgs | Write-Verbose
-                if ($sudo) {
-                    'Executing command with sudo' | Write-Host
-                    & $sudo $shellBin @script:shellArgs | Write-Host
-                }else {
-                    & $shellBin @script:shellArgs | Write-Host
-                }
-                if ($LASTEXITCODE) { throw "An error occurred." }
-            }
-
-            # Install linux dependencies
-            $shellArgs = @(
-                'linux/sourcepawn-dependencies.sh'
-            )
-            & $provisionScriptBlock
-        }
-    }
-
 }catch {
     throw
 }finally{
