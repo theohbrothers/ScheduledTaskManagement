@@ -120,7 +120,7 @@
     }
 
     @{
-        TaskName = 'MyTaskName4'
+        TaskName = 'MyTaskName3'
         TaskPath = '\MyTaskFolder\'
         Trigger = @(
             @{
