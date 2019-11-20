@@ -15,7 +15,7 @@ function Setup-ScheduledTask {
         [ValidateNotNullOrEmpty()]
         [object[]]$DefinitionObject
     ,
-        [Parameter(ParameterSetName='AsJson', Mandatory=$false)]
+        [Parameter(Mandatory=$false)]
         [Parameter(ParameterSetName='DefinitionFile')]
         [Parameter(ParameterSetName='DefinitionDirectory')]
         [switch]$AsJson
@@ -63,7 +63,7 @@ function Setup-ScheduledTask {
             try {
                 Serialize-DefinitionObject -DefinitionObject $_
             }catch {
-                $_ | Write-Error
+                Write-Error -Exception $_.Exception -Message $_.Exception.Message -Category $_.CategoryInfo.Category -TargetObject $_.TargetObject
             }
         }
 
@@ -74,7 +74,7 @@ function Setup-ScheduledTask {
             try {
                 Apply-ScheduledTask -DefinitionObject $_
             }catch {
-                $_ | Write-Error
+                Write-Error -Exception $_.Exception -Message $_.Exception.Message -Category $_.CategoryInfo.Category -TargetObject $_.TargetObject
             }
         }
     }catch {

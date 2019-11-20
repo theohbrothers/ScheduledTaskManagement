@@ -6,9 +6,9 @@ function Serialize-DefinitionObject {
         [hashtable]$DefinitionObject
     )
     begin {
-        $SerializedObject = $DefinitionObject | New-Clone
     }process {
         try {
+            $SerializedObject = $DefinitionObject.Clone()
             # Serialize proerties with appropriate object values for use by scheduledtasks cmdlets
             if ($DefinitionObject['Trigger']) {
                 $SerializedObject['Trigger'] = @(
@@ -19,6 +19,9 @@ function Serialize-DefinitionObject {
                             if ($_.Key -eq 'At') {
                                 $d = $_.Value
                                 $triggerTemp[$_.Key] = Get-Date @d
+                            }elseif ($_.Key -eq 'RepetitionDuration') {
+                                $t = $_.Value
+                                $triggerTemp[$_.Key] = New-Timespan @t
                             }elseif ($_.Key -eq 'RepetitionInterval') {
                                 $t = $_.Value
                                 $triggerTemp[$_.Key] = New-Timespan @t

@@ -21,6 +21,9 @@
                 #     Minute = 0
                 #     Second = 0
                 # }
+                # RepetitionDuration = @{
+                #     Days = 9999
+                # }
             }
             @{
                 # AtStartup = $true
@@ -35,6 +38,9 @@
                 Daily = $true
                 DaysInterval = 1
                 # Once = $true
+                # RepetitionDuration = @{
+                #     Days = 9999
+                # }
                 # RepetitionInterval = @{
                 #     Hour = 12
                 #     Minute = 0
@@ -45,11 +51,11 @@
         Action = @(
             @{
                 Execute = 'powershell'
-                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.1 | % { New-Item R:\$_ }"'
+                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.1 | % { New-Item $env:TEMP\$_ }"'
             }
             @{
                 Execute = 'powershell'
-                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.2 | % { New-Item R:\$_ }"'
+                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.2 | % { New-Item $env:TEMP\$_ }"'
             }
         )
         Settings = @{
@@ -58,7 +64,7 @@
             DontStopIfGoingOnBatteries = $true
         }
         Principal = @{
-            UserId = 'myusername'
+            UserId = 'VssAdministrator'
             LogonType = 'S4U'
             RunLevel = 'Highest'
         }
@@ -81,6 +87,9 @@
                 # Daily = $true
                 # DaysInterval = 1
                 Once = $true
+                RepetitionDuration = @{
+                    Days = 9999
+                }
                 RepetitionInterval = @{
                     Hour = 12
                     Minute = 0
@@ -91,11 +100,11 @@
         Action = @(
             @{
                 Execute = 'powershell'
-                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.1 | % { New-Item R:\$_ }"'
+                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.1 | % { New-Item $env:TEMP\$_ }"'
             }
             @{
                 Execute = 'powershell'
-                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.2 | % { New-Item R:\$_ }"'
+                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.2 | % { New-Item $env:TEMP\$_ }"'
             }
         )
         Settings = @{
@@ -127,6 +136,9 @@
                 Daily = $true
                 DaysInterval = 1
                 # Once = $true
+                # RepetitionDuration = @{
+                #     Days = 9999
+                # }
                 # RepetitionInterval = @{
                 #     Hour = 12
                 #     Minute = 0
@@ -146,6 +158,9 @@
                 Daily = $true
                 DaysInterval = 1
                 # Once = $true
+                # RepetitionDuration = @{
+                #     Days = 9999
+                # }
                 # RepetitionInterval = @{
                 #     Hour = 12
                 #     Minute = 0
@@ -165,6 +180,9 @@
                 Daily = $true
                 DaysInterval = 1
                 # Once = $true
+                # RepetitionDuration = @{
+                #     Days = 9999
+                # }
                 # RepetitionInterval = @{
                 #     Hour = 12
                 #     Minute = 0
@@ -184,6 +202,9 @@
                 Daily = $true
                 DaysInterval = 1
                 # Once = $true
+                # RepetitionDuration = @{
+                #     Days = 9999
+                # }
                 # RepetitionInterval = @{
                 #     Hour = 12
                 #     Minute = 0
@@ -194,15 +215,15 @@
         Action = @(
             @{
                 Execute = 'powershell'
-                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.1 | % { New-Item R:\$_ }"'
+                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.1 | % { New-Item $env:TEMP\$_ }"'
             }
             @{
                 Execute = 'powershell'
-                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.2 | % { New-Item R:\$_ }"'
+                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.2 | % { New-Item $env:TEMP\$_ }"'
             }
             @{
                 Execute = 'powershell'
-                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.3 | % { New-Item R:\$_ }"'
+                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.3 | % { New-Item $env:TEMP\$_ }"'
             }
         )
         Settings = @{
@@ -211,7 +232,7 @@
             DontStopIfGoingOnBatteries = $true
         }
         Principal = @{
-            UserId = 'myusername'
+            UserId = 'VssAdministrator'
             LogonType = 'S4U'
             RunLevel = 'Highest'
         }

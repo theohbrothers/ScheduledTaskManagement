@@ -1,0 +1,163 @@
+[
+  {
+    "Trigger": [
+      {
+        "AtStartup": true
+      },
+      {
+        "Daily": true,
+        "At": {
+          "Month": 11,
+          "Year": 1999,
+          "Hour": 17,
+          "Second": 0,
+          "Minute": 30,
+          "Day": 30
+        },
+        "DaysInterval": 1
+      }
+    ],
+    "Action": [
+      {
+        "Execute": "powershell",
+        "Argument": "-NonInteractive -NoProfile -NoLogo -Command \"Get-Date -UFormat .%s.1 | % { New-Item $env:TEMP\\$_ }\""
+      },
+      {
+        "Execute": "powershell",
+        "Argument": "-NonInteractive -NoProfile -NoLogo -Command \"Get-Date -UFormat .%s.2 | % { New-Item $env:TEMP\\$_ }\""
+      }
+    ],
+    "Settings": {
+      "Disable": false,
+      "DontStopIfGoingOnBatteries": true,
+      "AllowStartIfOnBatteries": true
+    },
+    "Principal": {
+      "UserId": "myusername",
+      "LogonType": "S4U",
+      "RunLevel": "Highest"
+    },
+    "TaskName": "MyTaskName1",
+    "TaskPath": "\\MyTaskFolder\\"
+  },
+  {
+    "Trigger": [
+      {
+        "At": {
+          "Month": 11,
+          "Year": 1999,
+          "Hour": 14,
+          "Second": 0,
+          "Minute": 0,
+          "Day": 30
+        },
+        "Once": true,
+        "RepetitionInterval": {
+          "Second": 0,
+          "Minute": 0,
+          "Hour": 12
+        }
+      }
+    ],
+    "Action": [
+      {
+        "Execute": "powershell",
+        "Argument": "-NonInteractive -NoProfile -NoLogo -Command \"Get-Date -UFormat .%s.1 | % { New-Item $env:TEMP\\$_ }\""
+      },
+      {
+        "Execute": "powershell",
+        "Argument": "-NonInteractive -NoProfile -NoLogo -Command \"Get-Date -UFormat .%s.2 | % { New-Item $env:TEMP\\$_ }\""
+      }
+    ],
+    "Settings": {
+      "Disable": false,
+      "DontStopIfGoingOnBatteries": true,
+      "AllowStartIfOnBatteries": true
+    },
+    "Principal": {
+      "UserId": "NT AUTHORITY\\SYSTEM",
+      "LogonType": "S4U",
+      "RunLevel": "Limited"
+    },
+    "TaskName": "MyTaskName2",
+    "TaskPath": "\\MyTaskFolder\\"
+  },
+  {
+    "Trigger": [
+      {
+        "Daily": true,
+        "At": {
+          "Month": 11,
+          "Year": 1999,
+          "Hour": 10,
+          "Second": 0,
+          "Minute": 0,
+          "Day": 30
+        },
+        "DaysInterval": 1
+      },
+      {
+        "Daily": true,
+        "At": {
+          "Month": 11,
+          "Year": 1999,
+          "Hour": 14,
+          "Second": 0,
+          "Minute": 0,
+          "Day": 30
+        },
+        "DaysInterval": 1
+      },
+      {
+        "Daily": true,
+        "At": {
+          "Month": 11,
+          "Year": 1999,
+          "Hour": 18,
+          "Second": 0,
+          "Minute": 0,
+          "Day": 30
+        },
+        "DaysInterval": 1
+      },
+      {
+        "Daily": true,
+        "At": {
+          "Month": 11,
+          "Year": 1999,
+          "Hour": 22,
+          "Second": 0,
+          "Minute": 0,
+          "Day": 30
+        },
+        "DaysInterval": 1
+      }
+    ],
+    "Action": [
+      {
+        "Execute": "powershell",
+        "Argument": "-NonInteractive -NoProfile -NoLogo -Command \"Get-Date -UFormat .%s.1 | % { New-Item $env:TEMP\\$_ }\""
+      },
+      {
+        "Execute": "powershell",
+        "Argument": "-NonInteractive -NoProfile -NoLogo -Command \"Get-Date -UFormat .%s.2 | % { New-Item $env:TEMP\\$_ }\""
+      },
+      {
+        "Execute": "powershell",
+        "Argument": "-NonInteractive -NoProfile -NoLogo -Command \"Get-Date -UFormat .%s.3 | % { New-Item $env:TEMP\\$_ }\""
+      }
+    ],
+    "Settings": {
+      "Disable": false,
+      "DontStopIfGoingOnBatteries": true,
+      "AllowStartIfOnBatteries": true
+    },
+    "Principal": {
+      "UserId": "myusername",
+      "LogonType": "S4U",
+      "RunLevel": "Highest"
+    },
+    "TaskName": "MyTaskName3",
+    "TaskPath": "\\MyTaskFolder\\"
+  }
+]
