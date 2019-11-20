@@ -51,11 +51,11 @@
         Action = @(
             @{
                 Execute = 'powershell'
-                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.1 | % { New-Item R:\$_ }"'
+                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.1 | % { New-Item $env:TEMP\$_ }"'
             }
             @{
                 Execute = 'powershell'
-                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.2 | % { New-Item R:\$_ }"'
+                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.2 | % { New-Item $env:TEMP\$_ }"'
             }
         )
         Settings = @{
@@ -100,11 +100,11 @@
         Action = @(
             @{
                 Execute = 'powershell'
-                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.1 | % { New-Item R:\$_ }"'
+                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.1 | % { New-Item $env:TEMP\$_ }"'
             }
             @{
                 Execute = 'powershell'
-                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.2 | % { New-Item R:\$_ }"'
+                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.2 | % { New-Item $env:TEMP\$_ }"'
             }
         )
         Settings = @{
@@ -215,15 +215,15 @@
         Action = @(
             @{
                 Execute = 'powershell'
-                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.1 | % { New-Item R:\$_ }"'
+                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.1 | % { New-Item $env:TEMP\$_ }"'
             }
             @{
                 Execute = 'powershell'
-                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.2 | % { New-Item R:\$_ }"'
+                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.2 | % { New-Item $env:TEMP\$_ }"'
             }
             @{
                 Execute = 'powershell'
-                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.3 | % { New-Item R:\$_ }"'
+                Argument = '-NonInteractive -NoProfile -NoLogo -Command "Get-Date -UFormat .%s.3 | % { New-Item $env:TEMP\$_ }"'
             }
         )
         Settings = @{
