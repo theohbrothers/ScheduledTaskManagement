@@ -15,7 +15,7 @@ try {
     # Run unit tests
     "Running unit tests" | Write-Host
     $testFailed = $false
-    $unitResult = Invoke-Pester -Script "$PSScriptRoot\..\src\Compile-SourceScript" -PassThru
+    $unitResult = Invoke-Pester -Script "$PSScriptRoot\..\src\ScheduledTaskManagement" -PassThru
     if ($unitResult.FailedCount -gt 0) {
         "$($unitResult.FailedCount) tests failed." | Write-Warning
         $testFailed = $true
