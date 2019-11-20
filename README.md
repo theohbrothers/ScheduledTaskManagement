@@ -2,10 +2,10 @@
 
 [![badge-build-azuredevops-build-img][]][badge-build-azuredevops-build-src] [![badge-version-github-release-img][]][badge-version-github-release-src] [![badge-version-powershellgallery-releases-img][]][badge-version-powershellgallery-releases-src]
 
-[badge-build-azuredevops-build-img]: https://img.shields.io/azure-devops/build/joeltimothyoh/ScheduledTaskManagement/19/master.svg?label=build&logo=azure-pipelines&style=flat-square
-[badge-build-azuredevops-build-src]: https://dev.azure.com/joeltimothyoh/ScheduledTaskManagement/_build?definitionId=19
-[badge-version-github-release-img]: https://img.shields.io/github/v/release/joeltimothyoh/ScheduledTaskManagement?style=flat-square
-[badge-version-github-release-src]: https://github.com/joeltimothyoh/ScheduledTaskManagement/releases
+[badge-build-azuredevops-build-img]: https://img.shields.io/azure-devops/build/theohbrothers/ScheduledTaskManagement/8/master.svg?label=build&logo=azure-pipelines&style=flat-square
+[badge-build-azuredevops-build-src]: https://dev.azure.com/theohbrothers/ScheduledTaskManagement/_build?definitionId=8
+[badge-version-github-release-img]: https://img.shields.io/github/v/release/theohbrothers/ScheduledTaskManagement?style=flat-square
+[badge-version-github-release-src]: https://github.com/theohbrothers/ScheduledTaskManagement/releases
 [badge-version-powershellgallery-releases-img]: https://img.shields.io/powershellgallery/v/ScheduledTaskManagement?logo=powershell&logoColor=white&label=PSGallery&labelColor=&style=flat-square
 [badge-version-powershellgallery-releases-src]: https://www.powershellgallery.com/packages/ScheduledTaskManagement/
 
