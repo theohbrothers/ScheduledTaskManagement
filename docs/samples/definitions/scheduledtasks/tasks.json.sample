@@ -56,9 +56,6 @@
           "Second": 0,
           "Minute": 0,
           "Hour": 12
-        },
-        "RepetitionDuration": {
-          "Days": 9999
         }
       }
     ],
