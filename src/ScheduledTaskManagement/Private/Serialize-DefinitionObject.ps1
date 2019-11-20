@@ -19,6 +19,9 @@ function Serialize-DefinitionObject {
                             if ($_.Key -eq 'At') {
                                 $d = $_.Value
                                 $triggerTemp[$_.Key] = Get-Date @d
+                            }elseif ($_.Key -eq 'RepetitionDuration') {
+                                $t = $_.Value
+                                $triggerTemp[$_.Key] = New-Timespan @t
                             }elseif ($_.Key -eq 'RepetitionInterval') {
                                 $t = $_.Value
                                 $triggerTemp[$_.Key] = New-Timespan @t
