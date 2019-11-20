@@ -1,0 +1,77 @@
+trigger:
+  branches:
+    include:
+    - '*'
+  tags:
+    include:
+    - '*'
+pr:
+  autoCancel: false
+  branches:
+    include:
+    - '*'
+
+resources:
+  repositories:
+  - repository: PSModulePublisher
+    type: github
+    name: theohbrothers/PSModulePublisher
+    endpoint: theohbrothers                   # Check for your 'Type: Github' connection under 'Project Settings' > 'Service connections'
+    ref: refs/tags/v0.3.2
+
+stages:
+- stage: build_test
+  displayName: Build, Test
+  jobs:
+  - job: windows_pwsh
+    displayName: '[Windows] PowerShell Core'
+    pool:
+      vmImage: windows-2019
+    steps:
+    - checkout: self
+      submodules: recursive
+    - template: templates/azure-pipelines/entrypoint/windows/continuous-build.yml@PSModulePublisher
+  - job: windows_powershell_5_1
+    displayName: '[Windows] PowerShell 5.1'
+    pool:
+      vmImage: windows-2019
+    steps:
+    - checkout: self
+      submodules: recursive
+    - template: templates/azure-pipelines/entrypoint/windows/powershell/continuous-build.yml@PSModulePublisher
+  - job: windows_powershell_5_0
+    displayName: '[Windows] PowerShell 5.0'
+    pool:
+      vmImage: vs2015-win2012r2
+    steps:
+    - checkout: self
+      submodules: recursive
+    - template: templates/azure-pipelines/entrypoint/windows/powershell/continuous-build.yml@PSModulePublisher
+  - job: windows_1803
+    displayName: '[Windows Server Core 1803] Windows PowerShell'
+    pool:
+      vmImage: win1803
+    steps:
+    - checkout: self
+      submodules: recursive
+    - template: templates/azure-pipelines/entrypoint/windows/powershell/continuous-build.yml@PSModulePublisher
+  - job: windows_2016
+    displayName: '[Windows Server 2016] Windows PowerShell'
+    pool:
+      vmImage: vs2017-win2016
+    steps:
+    - checkout: self
+      submodules: recursive
+    - template: templates/azure-pipelines/entrypoint/windows/powershell/continuous-build.yml@PSModulePublisher
+- stage: publish
+  displayName: Publish
+  dependsOn: build_test
+  jobs:
+  - job: windows_powershell_5_1
+    displayName: '[Windows] PowerShell 5.1'
+    pool:
+      vmImage: windows-2019
+    steps:
+    - checkout: self
+      submodules: recursive
+    - template: templates/azure-pipelines/entrypoint/windows/powershell/continuous-build.yml@PSModulePublisher
