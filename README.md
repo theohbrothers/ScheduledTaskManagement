@@ -15,7 +15,7 @@ A PowerShell module for non-interactive management of Scheduled Tasks.
 
 ## Requirements
 
-* **Windows** with [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-windows-powershell?view=powershell-6).
+* **Windows** with [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-windows-powershell).
 
 ## Installation
 
@@ -40,15 +40,28 @@ Install-Module -Name ScheduledTaskManagement -Repository PSGallery -Scope AllUse
 
 ## Usage
 
+### Scheduled tasks
+
+To create scheduled tasks, first define the properties of each task in `.ps1` or `.json` definition file(s). Then feed each definition file path, directory path, or definition array objects to `Setup-ScheduledTask` to create them non-interactively.
+
+The properties of each task definition object are based off the following cmdlets from the [`ScheduledTasks`](https://docs.microsoft.com/en-us/powershell/module/scheduledtasks) module, making them customizable and extensible:
+
+```powershell
+New-ScheduledTaskTrigger
+New-ScheduledTaskAction
+New-ScheduledTaskSettingsSet
+New-ScheduledTaskPrincipal
+```
+
+Sample defintion files can be found [here](docs/samples/definitions/scheduledtasks).
+
 ### Functions
 
 #### Parameters
 
 ```powershell
 Setup-ScheduledTask -DefinitionFile <string[]> [-AsJson] [<CommonParameters>]
-
 Setup-ScheduledTask -DefinitionDirectory <string[]> [-AsJson] [<CommonParameters>]
-
 Setup-ScheduledTask -DefinitionObject <Object[]> [<CommonParameters>]
 ```
 
