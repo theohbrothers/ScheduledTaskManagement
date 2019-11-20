@@ -27,29 +27,29 @@ $cmd = "Setup-ScheduledTask"
 $iterations = 1
 
 $cmdArgs = @{
-    DefinitionFile = "$PSScriptRoot\..\..\tasks\tasks.ps1"
+    DefinitionFile = "$PSScriptRoot\..\..\definitions\scheduledtasks\tasks.ps1"
 }
 & $functionTestScriptBlock
 
 $cmdArgs = @{
-    DefinitionFile = "$PSScriptRoot\..\..\tasks\tasks.json"
+    DefinitionFile = "$PSScriptRoot\..\..\definitions\scheduledtasks\tasks.json"
     AsJson = $true
 }
 & $functionTestScriptBlock
 
 $cmdArgs = @{
-    DefinitionDirectory = "$PSScriptRoot\..\..\tasks\"
+    DefinitionDirectory = "$PSScriptRoot\..\..\definitions\scheduledtasks\"
 }
 & $functionTestScriptBlock
 
 $cmdArgs = @{
-    DefinitionDirectory = "$PSScriptRoot\..\..\tasks\"
+    DefinitionDirectory = "$PSScriptRoot\..\..\definitions\scheduledtasks\"
     AsJson = $true
 }
 & $functionTestScriptBlock
 
 $cmdArgs = @{
-    DefinitionObject = . "$PSScriptRoot\..\..\tasks\tasks.ps1"
+    DefinitionObject = . "$PSScriptRoot\..\..\definitions\scheduledtasks\tasks.ps1"
 }
 & $functionTestScriptBlock
 
