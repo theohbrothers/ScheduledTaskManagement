@@ -58,7 +58,7 @@
             DontStopIfGoingOnBatteries = $true
         }
         Principal = @{
-            UserId = 'joe'
+            UserId = 'VssAdministrator'
             LogonType = 'S4U'
             RunLevel = 'Highest'
         }
@@ -211,7 +211,7 @@
             DontStopIfGoingOnBatteries = $true
         }
         Principal = @{
-            UserId = 'joe'
+            UserId = 'VssAdministrator'
             LogonType = 'S4U'
             RunLevel = 'Highest'
         }
