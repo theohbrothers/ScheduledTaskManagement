@@ -17,4 +17,4 @@ Get-ChildItem -Path "$($script:MODULE['PRIVATE_DIR'])\*.ps1" | % { . $_.FullName
 Get-ChildItem -Path "$($script:MODULE['HELPERS_DIR'])\*.ps1" | % { . $_.FullName }
 
 # Export Public functions
-Export-ModuleMember -Function (Get-ChildItem "$($script:MODULE['PUBLIC_DIR'] )\*.ps1" | Select-Object -ExpandProperty BaseName)
+Export-ModuleMember -Function (Get-ChildItem "$($script:MODULE['PUBLIC_DIR'])\*.ps1" | Select-Object -ExpandProperty BaseName)
