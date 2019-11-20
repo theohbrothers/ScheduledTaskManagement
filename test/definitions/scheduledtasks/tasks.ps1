@@ -21,6 +21,9 @@
                 #     Minute = 0
                 #     Second = 0
                 # }
+                # RepetitionDuration = @{
+                #     Days = 24855
+                # }
             }
             @{
                 # AtStartup = $true
@@ -35,6 +38,9 @@
                 Daily = $true
                 DaysInterval = 1
                 # Once = $true
+                # RepetitionDuration = @{
+                #     Days = 24855
+                # }
                 # RepetitionInterval = @{
                 #     Hour = 12
                 #     Minute = 0
@@ -81,6 +87,9 @@
                 # Daily = $true
                 # DaysInterval = 1
                 Once = $true
+                RepetitionDuration = @{
+                    Days = 24855
+                }
                 RepetitionInterval = @{
                     Hour = 12
                     Minute = 0
@@ -111,7 +120,7 @@
     }
 
     @{
-        TaskName = 'MyTaskName3'
+        TaskName = 'MyTaskName4'
         TaskPath = '\MyTaskFolder\'
         Trigger = @(
             @{
@@ -127,6 +136,9 @@
                 Daily = $true
                 DaysInterval = 1
                 # Once = $true
+                # RepetitionDuration = @{
+                #     Days = 24855
+                # }
                 # RepetitionInterval = @{
                 #     Hour = 12
                 #     Minute = 0
@@ -146,6 +158,9 @@
                 Daily = $true
                 DaysInterval = 1
                 # Once = $true
+                # RepetitionDuration = @{
+                #     Days = 24855
+                # }
                 # RepetitionInterval = @{
                 #     Hour = 12
                 #     Minute = 0
@@ -165,6 +180,9 @@
                 Daily = $true
                 DaysInterval = 1
                 # Once = $true
+                # RepetitionDuration = @{
+                #     Days = 24855
+                # }
                 # RepetitionInterval = @{
                 #     Hour = 12
                 #     Minute = 0
@@ -184,6 +202,9 @@
                 Daily = $true
                 DaysInterval = 1
                 # Once = $true
+                # RepetitionDuration = @{
+                #     Days = 24855
+                # }
                 # RepetitionInterval = @{
                 #     Hour = 12
                 #     Minute = 0
