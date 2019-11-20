@@ -18,6 +18,11 @@ resources:
     name: theohbrothers/PSModulePublisher
     endpoint: theohbrothers                   # Check for your 'Type: Github' connection under 'Project Settings' > 'Service connections'
     ref: refs/tags/v0.3.2
+  - repository: PSRepositoryReleaseManager
+    type: github
+    name: theohbrothers/PSRepositoryReleaseManager
+    endpoint: theohbrothers
+    ref: refs/tags/v0.5.2
 
 stages:
 - stage: build_test
@@ -75,3 +80,18 @@ stages:
     - checkout: self
       submodules: recursive
     - template: templates/azure-pipelines/entrypoint/windows/powershell/continuous-build.yml@PSModulePublisher
+    - template: templates/azure-pipelines/entrypoint/windows/powershell/publish.yml@PSModulePublisher
+- stage: release
+  displayName: Release
+  dependsOn: publish
+  jobs:
+  - job: linux_container
+    displayName: '[Linux] [Container] PowerShell Core'
+    pool:
+      vmImage: ubuntu-18.04
+    container: joeltimothyoh/powershell:6.1.0-ubuntu-18.04-git
+    steps:
+    - checkout: self
+      submodules: recursive
+    - template: templates/azure-pipelines/entrypoint/generate.yml@PSRepositoryReleaseManager
+    - template: templates/azure-pipelines/entrypoint/release.yml@PSRepositoryReleaseManager

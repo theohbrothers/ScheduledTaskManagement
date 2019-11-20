@@ -1,3 +1,6 @@
 [submodule "build/PSModulePublisher"]
 	path = build/PSModulePublisher
 	url = https://github.com/theohbrothers/PSModulePublisher.git
+[submodule "build/PSRepositoryReleaseManager"]
+	path = build/PSRepositoryReleaseManager
+	url = https://github.com/theohbrothers/PSRepositoryReleaseManager.git
