@@ -15,9 +15,8 @@ function Setup-ScheduledTask {
         [ValidateNotNullOrEmpty()]
         [object[]]$DefinitionObject
     ,
-        [Parameter(Mandatory=$false)]
-        [Parameter(ParameterSetName='DefinitionFile')]
-        [Parameter(ParameterSetName='DefinitionDirectory')]
+        [Parameter(ParameterSetName='DefinitionFile', Mandatory=$false)]
+        [Parameter(ParameterSetName='DefinitionDirectory', Mandatory=$false)]
         [switch]$AsJson
     )
     try {
