@@ -39,7 +39,7 @@ function Setup-ScheduledTask {
         }
         if (!$PSBoundParameters['DefinitionObject']) {
             $DefinitionCollectionRaw = $DefinitionFileCollection | % {
-                if ($AsJson) {
+                if ($PSBoundParameters['AsJson']) {
                     Get-Content -Path $_.FullName | ConvertFrom-Json
                 }else {
                     . $_.FullName
