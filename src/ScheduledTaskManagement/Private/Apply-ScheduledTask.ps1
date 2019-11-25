@@ -1,7 +1,7 @@
 function Apply-ScheduledTask {
     [CmdletBinding()]
     Param (
-        [Parameter(ValueFromPipeline=$true, ValueFromPipelineByPropertyName=$true)]
+        [Parameter(Mandatory=$true, ValueFromPipeline=$true, ValueFromPipelineByPropertyName=$true)]
         [ValidateNotNullOrEmpty()]
         [hashtable]$DefinitionObject
     )
