@@ -16,13 +16,13 @@
                 # Daily = $true
                 # DaysInterval = 1
                 # Once = $true
+                # RepetitionDuration = @{
+                #     Days = 9999
+                # }
                 # RepetitionInterval = @{
                 #     Hour = 12
                 #     Minute = 0
                 #     Second = 0
-                # }
-                # RepetitionDuration = @{
-                #     Days = 9999
                 # }
             }
             @{
