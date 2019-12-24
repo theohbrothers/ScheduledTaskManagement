@@ -46,7 +46,6 @@ function Setup-ScheduledTask {
                 }
             }
         }elseif ($PSBoundParameters['DefinitionObject']) {
-            "DefinitionObject" | Write-Verbose
             $DefinitionCollectionRaw = $PSBoundParameters['DefinitionObject']
         }
         $DefinitionCollectionRaw | % {
