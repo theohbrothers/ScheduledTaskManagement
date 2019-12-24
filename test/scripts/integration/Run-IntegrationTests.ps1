@@ -14,7 +14,7 @@ $functionTestScriptBlock = {
         for ($i=0; $i -le $iterations-1; $i++) {
             "Iteration: $($i+1)" | Write-Host
             $stdout = & $script:cmd @cmdArgs
-            $stdout | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
+            $stdout | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Host
         }
     }catch {
         $_ | Write-Error
