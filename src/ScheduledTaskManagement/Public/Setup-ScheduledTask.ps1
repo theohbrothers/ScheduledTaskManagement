@@ -58,7 +58,7 @@ function Setup-ScheduledTask {
         # Serialize definitions
         $DefinitionsCollectionSerialized = $DefinitionsCollection | % {
             "Serializing task definition:" | Write-Verbose
-            $_ | Out-String | Write-Verbose
+            $_ | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
             try {
                 Serialize-DefinitionObject -DefinitionObject $_
             }catch {
@@ -69,7 +69,7 @@ function Setup-ScheduledTask {
         # Setup scheduled tasks
         $DefinitionsCollectionSerialized | % {
             "Setting up task:" | Write-Verbose
-            $_ | Out-String | Write-Verbose
+            $_ | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
             try {
                 Apply-ScheduledTask -DefinitionObject $_
             }catch {
