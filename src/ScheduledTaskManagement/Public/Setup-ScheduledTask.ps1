@@ -22,31 +22,31 @@ function Setup-ScheduledTask {
     try {
         # Import definitions as an array of hashtable definitions
         $DefinitionsCollection = New-Object System.Collections.ArrayList
-        if ($PSBoundParameters['DefinitionFile']) {
-            $DefinitionFileCollection = Get-Item $PSBoundParameters['DefinitionFile']
-        }elseif ($PSBoundParameters['DefinitionDirectory']) {
-            $DefinitionFileCollection = if ($PSBoundParameters['AsJson']) {
-                                            Get-ChildItem $PSBoundParameters['DefinitionDirectory'] -File | ? { $_.Extension -eq '.json' }
+        if ($DefinitionFile) {
+            $DefinitionFileCollection = Get-Item $DefinitionFile
+        }elseif ($DefinitionDirectory) {
+            $DefinitionFileCollection = if ($AsJson) {
+                                            Get-ChildItem $DefinitionDirectory -File | ? { $_.Extension -eq '.json' }
                                         }else {
-                                            Get-ChildItem $PSBoundParameters['DefinitionDirectory'] -File | ? { $_.Extension -eq '.ps1' }
+                                            Get-ChildItem $DefinitionDirectory -File | ? { $_.Extension -eq '.ps1' }
                                         }
         }
-        if (!$PSBoundParameters['DefinitionObject']) {
+        if (!$DefinitionObject) {
             if (!$DefinitionFileCollection) {
                 "No definitions could be found from the specified definition files or directories." | Write-Error
                 return
             }
         }
-        if (!$PSBoundParameters['DefinitionObject']) {
+        if (!$DefinitionObject) {
             $DefinitionCollectionRaw = $DefinitionFileCollection | % {
-                if ($PSBoundParameters['AsJson']) {
+                if ($AsJson) {
                     Get-Content -Path $_.FullName | ConvertFrom-Json
                 }else {
                     . $_.FullName
                 }
             }
-        }elseif ($PSBoundParameters['DefinitionObject']) {
-            $DefinitionCollectionRaw = $PSBoundParameters['DefinitionObject']
+        }elseif ($DefinitionObject) {
+            $DefinitionCollectionRaw = $DefinitionObject
         }
         $DefinitionCollectionRaw | % {
             $definitionHashtable = if ($_.GetType() -ne [hashtable]) { $_ | ConvertTo-Hashtable } else { $_ }
