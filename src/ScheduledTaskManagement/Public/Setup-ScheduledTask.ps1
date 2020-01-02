@@ -40,7 +40,7 @@ function Setup-ScheduledTask {
         if (!$DefinitionObject) {
             $DefinitionCollectionRaw = $DefinitionFileCollection | % {
                 if ($AsJson) {
-                    Get-Content -Path $_.FullName | ConvertFrom-Json
+                    Get-Content $_.FullName | ConvertFrom-Json
                 }else {
                     . $_.FullName
                 }
