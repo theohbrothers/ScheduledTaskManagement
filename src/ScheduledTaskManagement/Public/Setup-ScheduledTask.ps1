@@ -5,16 +5,16 @@ function Setup-ScheduledTask {
         [ValidateScript({Test-Path $_ -PathType Leaf})]
         [ValidateNotNullOrEmpty()]
         [string[]]$DefinitionFile
-    ,
+        ,
         [Parameter(ParameterSetName='DefinitionDirectory', Mandatory=$true)]
         [ValidateScript({Test-Path $_ -PathType Container})]
         [ValidateNotNullOrEmpty()]
         [string[]]$DefinitionDirectory
-    ,
+        ,
         [Parameter(ParameterSetName='DefinitionObject', Mandatory=$true)]
         [ValidateNotNullOrEmpty()]
         [object[]]$DefinitionObject
-    ,
+        ,
         [Parameter(ParameterSetName='DefinitionFile', Mandatory=$false)]
         [Parameter(ParameterSetName='DefinitionDirectory', Mandatory=$false)]
         [switch]$AsJson
