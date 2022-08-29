@@ -31,6 +31,14 @@ stages:
   - job: windows_pwsh
     displayName: '[Windows] PowerShell Core'
     pool:
+      vmImage: windows-2022
+    steps:
+    - checkout: self
+      submodules: recursive
+    - template: templates/azure-pipelines/entrypoint/windows/continuous-build.yml@PSModulePublisher
+  - job: windows_2019
+    displayName: '[Windows Server 2019] PowerShell Core'
+    pool:
       vmImage: windows-2019
     steps:
     - checkout: self
@@ -40,14 +48,6 @@ stages:
     displayName: '[Windows] PowerShell 5.1'
     pool:
       vmImage: windows-2019
-    steps:
-    - checkout: self
-      submodules: recursive
-    - template: templates/azure-pipelines/entrypoint/windows/powershell/continuous-build.yml@PSModulePublisher
-  - job: windows_2016
-    displayName: '[Windows Server 2016] Windows PowerShell'
-    pool:
-      vmImage: vs2017-win2016
     steps:
     - checkout: self
       submodules: recursive
