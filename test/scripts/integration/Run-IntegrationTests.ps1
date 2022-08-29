@@ -53,6 +53,9 @@ $cmdArgs = @{
 }
 & $functionTestScriptBlock
 
+$cmd = "{ Get-Content -Path '$PSScriptRoot\..\..\definitions\scheduledtasks\tasks.ps1' | Setup-ScheduledTask }"
+$cmdArgs = $null
+& $functionTestScriptBlock
 
 ###########
 # Results #

@@ -11,8 +11,7 @@ function Setup-ScheduledTask {
         [ValidateNotNullOrEmpty()]
         [string[]]$DefinitionDirectory
         ,
-        [Parameter(ParameterSetName='DefinitionObject', Mandatory=$true)]
-        [ValidateNotNullOrEmpty()]
+        [Parameter(ParameterSetName='DefinitionObject', Mandatory=$true, ValueFromPipeline=$true)]
         [object[]]$DefinitionObject
         ,
         [Parameter(ParameterSetName='DefinitionFile', Mandatory=$false)]
@@ -31,13 +30,11 @@ function Setup-ScheduledTask {
                                             Get-ChildItem $DefinitionDirectory -File | ? { $_.Extension -eq '.ps1' }
                                         }
         }
-        if (!$DefinitionObject) {
+        if ($DefinitionFile -or $DefinitionDirectory) {
             if (!$DefinitionFileCollection) {
                 "No definitions could be found from the specified definition files or directories." | Write-Error
                 return
             }
-        }
-        if (!$DefinitionObject) {
             $DefinitionCollectionRaw = $DefinitionFileCollection | % {
                 if ($AsJson) {
                     Get-Content $_.FullName | ConvertFrom-Json
@@ -45,7 +42,11 @@ function Setup-ScheduledTask {
                     . $_.FullName
                 }
             }
-        }elseif ($DefinitionObject) {
+        }else {
+            if ($null -eq $DefinitionObject) {
+                "The supplied definition object is null or empty." | Write-Error
+                return
+            }
             $DefinitionCollectionRaw = $DefinitionObject
         }
         $DefinitionCollectionRaw | % {
