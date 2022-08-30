@@ -80,9 +80,12 @@ Setup-ScheduledTask -DefinitionDirectory "C:\path\to\definition\directory\"
 # Via directory containing .json definition files
 Setup-ScheduledTask -DefinitionDirectory "C:\path\to\definition\directory\" -AsJson
 
-# Via definition objects
+# Via definition object(s)
 $tasks = . "C:\path\to\definition.ps1"
+## Via parameter
 Setup-ScheduledTask -DefinitionObject $tasks
+## Via pipeline
+$tasks | Setup-ScheduledTask
 ```
 
 To list all available functions of the module:

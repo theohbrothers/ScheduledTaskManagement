@@ -13,7 +13,11 @@ $functionTestScriptBlock = {
         $script:cmdArgs | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
         for ($i=0; $i -le $iterations-1; $i++) {
             "Iteration: $($i+1)" | Write-Host
-            $stdout = & $script:cmd @script:cmdArgs
+            if ($script:cmdArgs) {
+                $stdout = & $script:cmd @script:cmdArgs
+            }else {
+                $stdout = & $script:cmd
+            }
             $stdout | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Host
         }
     }catch {
@@ -53,6 +57,11 @@ $cmdArgs = @{
 }
 & $functionTestScriptBlock
 
+$cmd = {
+    . "$PSScriptRoot\..\..\definitions\scheduledtasks\tasks.ps1" | Setup-ScheduledTask
+}
+$cmdArgs = $null
+& $functionTestScriptBlock
 
 ###########
 # Results #
