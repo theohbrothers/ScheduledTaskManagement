@@ -63,6 +63,13 @@ $cmd = {
 $cmdArgs = $null
 & $functionTestScriptBlock
 
+$cmd = {
+    $tasks = Get-Content "$PSScriptRoot\..\..\definitions\scheduledtasks\tasks.json" | ConvertFrom-Json
+    $tasks | Setup-ScheduledTask
+}
+$cmdArgs = $null
+& $functionTestScriptBlock
+
 ###########
 # Results #
 ###########
