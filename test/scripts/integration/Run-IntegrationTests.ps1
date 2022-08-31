@@ -78,6 +78,20 @@ $cmd = {
 $cmdArgs = $null
 & $functionTestScriptBlock
 
+$cmd = {
+    $tasks = Get-Item "$PSScriptRoot\..\..\definitions\scheduledtasks\*.ps1" | % { . $_ }
+    $tasks | Setup-ScheduledTask
+}
+$cmdArgs = $null
+& $functionTestScriptBlock
+
+$cmd = {
+    $tasks = Get-Item "$PSScriptRoot\..\..\definitions\scheduledtasks\*.json" | % { Get-Content $_ | ConvertFrom-Json }
+    $tasks | Setup-ScheduledTask
+}
+$cmdArgs = $null
+& $functionTestScriptBlock
+
 ###########
 # Results #
 ###########
