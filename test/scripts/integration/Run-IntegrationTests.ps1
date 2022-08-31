@@ -58,6 +58,13 @@ $cmdArgs = @{
 & $functionTestScriptBlock
 
 $cmd = {
+    $tasks = . "$PSScriptRoot\..\..\definitions\scheduledtasks\tasks.ps1"
+    Setup-ScheduledTask -DefinitionObject $tasks
+}
+$cmdArgs = $null
+& $functionTestScriptBlock
+
+$cmd = {
     . "$PSScriptRoot\..\..\definitions\scheduledtasks\tasks.ps1" | Setup-ScheduledTask
 }
 $cmdArgs = $null
