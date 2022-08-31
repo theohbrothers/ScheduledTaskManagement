@@ -81,7 +81,10 @@ Setup-ScheduledTask -DefinitionDirectory "C:\path\to\definition\directory\"
 Setup-ScheduledTask -DefinitionDirectory "C:\path\to\definition\directory\" -AsJson
 
 # Via definition object(s)
-$tasks = . "C:\path\to\definition.ps1"
+$tasks = . "C:\path\to\definition.ps1"                                                                  # From .ps1 definition file
+$tasks = Get-Item "C:\path\to\definition\directory\*.ps1" | % { . $_ }                                  # From .ps1 definition directory
+$tasks = Get-Content "C:\path\to\definition.json" | ConvertFrom-Json                                    # From .json definition file
+$tasks = Get-Item "C:\path\to\definition\directory\*.json" | % { Get-Content $_ | ConvertFrom-Json }    # From .json definition directory
 ## Via parameter
 Setup-ScheduledTask -DefinitionObject $tasks
 ## Via pipeline
