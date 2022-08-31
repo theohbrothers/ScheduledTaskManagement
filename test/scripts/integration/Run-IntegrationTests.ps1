@@ -65,7 +65,8 @@ $cmdArgs = $null
 & $functionTestScriptBlock
 
 $cmd = {
-    . "$PSScriptRoot\..\..\definitions\scheduledtasks\tasks.ps1" | Setup-ScheduledTask
+    $tasks = . "$PSScriptRoot\..\..\definitions\scheduledtasks\tasks.ps1"
+    $tasks | Setup-ScheduledTask
 }
 $cmdArgs = $null
 & $functionTestScriptBlock
