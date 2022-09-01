@@ -80,6 +80,9 @@ $cmdArgs = $null
 
 $cmd = {
     $tasks = Get-Item "$PSScriptRoot\..\..\definitions\scheduledtasks\*.ps1" | % { . $_ }
+    $tasks.Count | Write-Verbose
+    $tasks.GetType() | Write-Verbose
+    $tasks | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
     $tasks | Setup-ScheduledTask
 }
 $cmdArgs = $null
@@ -88,6 +91,7 @@ $cmdArgs = $null
 $cmd = {
     $tasks = Get-Item "$PSScriptRoot\..\..\definitions\scheduledtasks\*.json" | % { Get-Content $_ | ConvertFrom-Json }
     $tasks.Count | Write-Verbose
+    $tasks.GetType() | Write-Verbose
     $tasks | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
     $tasks | Setup-ScheduledTask
 }
