@@ -89,7 +89,7 @@ $cmdArgs = $null
 & $functionTestScriptBlock
 
 $cmd = {
-    $tasks = Get-Item "$PSScriptRoot\..\..\definitions\scheduledtasks\*.json" | % { Get-Content $_ | ConvertFrom-Json }
+    $tasks = Get-Item "$PSScriptRoot\..\..\definitions\scheduledtasks\*.json" | % { . Get-Content $_ | ConvertFrom-Json }
     $tasks.Count | Write-Verbose
     $tasks.GetType() | Write-Verbose
     $tasks | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
