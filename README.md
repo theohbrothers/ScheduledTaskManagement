@@ -42,16 +42,16 @@ Install-Module -Name ScheduledTaskManagement -Repository PSGallery -Scope AllUse
 
 ### Scheduled tasks
 
-To create scheduled tasks, first define the properties of each task in `.ps1` or `.json` definition file(s). Then feed the definition file path(s), definition directory path(s), or definition array objects to `Setup-ScheduledTask` to create them non-interactively.
+To create or apply scheduled tasks, first define the properties of each task in `.ps1` or `.json` definition file(s). Then feed definition file path(s), definition directory path(s), or definition array objects to `Setup-ScheduledTask` to create or apply them non-interactively.
 
-The properties of each task definition object are based off the following cmdlets from the [`ScheduledTasks`](https://docs.microsoft.com/en-us/powershell/module/scheduledtasks) module, making them customizable and extensible:
+The properties of task definition objects are based off the parameters of the following cmdlets from the [`ScheduledTasks`](https://docs.microsoft.com/en-us/powershell/module/scheduledtasks) module:
 
-```powershell
-New-ScheduledTaskTrigger
-New-ScheduledTaskAction
-New-ScheduledTaskSettingsSet
-New-ScheduledTaskPrincipal
-```
+* [`New-ScheduledTaskTrigger`](https://docs.microsoft.com/en-us/powershell/module/scheduledtasks/new-scheduledtasktrigger)
+* [`New-ScheduledTaskAction`](https://docs.microsoft.com/en-us/powershell/module/scheduledtasks/new-scheduledtaskaction)
+* [`New-ScheduledTaskSettingsSet`](https://docs.microsoft.com/en-us/powershell/module/scheduledtasks/new-scheduledtasksettingsset)
+* [`New-ScheduledTaskPrincipal`](https://docs.microsoft.com/en-us/powershell/module/scheduledtasks/new-scheduledtaskprincipal)
+
+Several parameters such as [`-At`](src/ScheduledTaskManagement/Private/Serialize-DefinitionObject.ps1#L19-L27) of `New-ScheduledTaskTrigger` involve values whose types prevent them from being expressed purely in non-PowerShell code. The module accounts for such values by allowing them to be *intuitively* yet [*declaratively* defined](docs/samples/definitions/scheduledtasks/tasks.sample.json#L51-L63). Those values will be converted into their relevant PowerShell types as part of the module's serialization process right before task creation or application. Through so, scheduled tasks can be managed as code as part of the practice of [Infrastructure-as-Code (IaC)](https://en.wikipedia.org/wiki/Infrastructure_as_code).
 
 Sample definition files can be found [here](docs/samples/definitions/scheduledtasks).
 
