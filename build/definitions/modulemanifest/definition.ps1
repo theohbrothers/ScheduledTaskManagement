@@ -35,9 +35,20 @@
     PrivateData = @{
         # PSData = @{           # Properties within PSData will be correctly added to the manifest via Update-ModuleManifest without the PSData key. Leave the key commented out.
             Tags = @(
-                'taskscheduler'
+                'automation'
+                'configascode'
+                'configuration'
+                'devops'
+                'iac'
+                'infrastructureascode'
+                'noninteractive'
+                'provisioning'
+                'scheduled-tasks'
                 'scheduledtasks'
+                'task-scheduler'
                 'tasks'
+                'taskscheduler'
+                'windows'
             )
             LicenseUri = 'https://raw.githubusercontent.com/theohbrothers/ScheduledTaskManagement/master/LICENSE'
             ProjectUri = 'https://github.com/theohbrothers/ScheduledTaskManagement'
