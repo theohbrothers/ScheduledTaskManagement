@@ -83,16 +83,16 @@ $cmd = {
     $tasks.Count | Write-Verbose
     '$tasks:' | Write-Verbose
     $tasks | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
-    $tasks.GetType() | Format-Table | Write-Verbose
+    $tasks.GetType() | Format-Table | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
     '$tasks[0]:' | Write-Verbose
     $tasks[0] | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
-    $tasks[0].GetType() | Format-Table | Write-Verbose
+    $tasks[0].GetType() | Format-Table | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
     '$tasks[1]:' | Write-Verbose
     $tasks[1] | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
-    $tasks[1].GetType() | Format-Table | Write-Verbose
+    $tasks[1].GetType() | Format-Table | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
     '$tasks[2]:' | Write-Verbose
     $tasks[2] | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
-    $tasks[2].GetType() | Format-Table | Write-Verbose
+    $tasks[2].GetType() | Format-Table | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
     '-' | Write-Verbose
     $tasks | Setup-ScheduledTask
 }
@@ -104,16 +104,16 @@ $cmd = {
     $tasks.Count | Write-Verbose
     '$tasks:' | Write-Verbose
     $tasks | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
-    $tasks.GetType() | Format-Table | Write-Verbose
+    $tasks.GetType() | Format-Table | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
     '$tasks[0]:' | Write-Verbose
     $tasks[0] | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
-    $tasks[0].GetType() | Format-Table | Write-Verbose
+    $tasks[0].GetType() | Format-Table | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
     '$tasks[1]:' | Write-Verbose
     $tasks[1] | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
-    $tasks[1].GetType() | Format-Table | Write-Verbose
+    $tasks[1].GetType() | Format-Table | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
     '$tasks[2]:' | Write-Verbose
     $tasks[2] | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
-    $tasks[2].GetType() | Format-Table | Write-Verbose
+    $tasks[2].GetType() | Format-Table | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
     '-' | Write-Verbose
     $tasks | Setup-ScheduledTask
 }
