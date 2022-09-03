@@ -81,8 +81,19 @@ $cmdArgs = $null
 $cmd = {
     $tasks = Get-Item "$PSScriptRoot\..\..\definitions\scheduledtasks\*.ps1" | % { . $_ }
     $tasks.Count | Write-Verbose
-    $tasks.GetType() | Write-Verbose
+    '$tasks:' | Write-Verbose
     $tasks | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
+    $tasks.GetType() | Format-Table | Write-Verbose
+    '$tasks[0]:' | Write-Verbose
+    $tasks[0] | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
+    $tasks[0].GetType() | Format-Table | Write-Verbose
+    '$tasks[1]:' | Write-Verbose
+    $tasks[1] | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
+    $tasks[1].GetType() | Format-Table | Write-Verbose
+    '$tasks[2]:' | Write-Verbose
+    $tasks[2] | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
+    $tasks[2].GetType() | Format-Table | Write-Verbose
+    '-' | Write-Verbose
     $tasks | Setup-ScheduledTask
 }
 $cmdArgs = $null
@@ -91,8 +102,19 @@ $cmdArgs = $null
 $cmd = {
     $tasks = Get-Item "$PSScriptRoot\..\..\definitions\scheduledtasks\*.json" | % { . Get-Content $_ | ConvertFrom-Json }
     $tasks.Count | Write-Verbose
-    $tasks.GetType() | Write-Verbose
+    '$tasks:' | Write-Verbose
     $tasks | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
+    $tasks.GetType() | Format-Table | Write-Verbose
+    '$tasks[0]:' | Write-Verbose
+    $tasks[0] | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
+    $tasks[0].GetType() | Format-Table | Write-Verbose
+    '$tasks[1]:' | Write-Verbose
+    $tasks[1] | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
+    $tasks[1].GetType() | Format-Table | Write-Verbose
+    '$tasks[2]:' | Write-Verbose
+    $tasks[2] | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
+    $tasks[2].GetType() | Format-Table | Write-Verbose
+    '-' | Write-Verbose
     $tasks | Setup-ScheduledTask
 }
 $cmdArgs = $null
