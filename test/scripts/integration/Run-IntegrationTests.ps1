@@ -52,11 +52,6 @@ $cmdArgs = @{
 }
 & $functionTestScriptBlock
 
-$cmdArgs = @{
-    DefinitionObject = . "$PSScriptRoot\..\..\definitions\scheduledtasks\tasks.ps1"
-}
-& $functionTestScriptBlock
-
 $cmd = {
     $tasks = . "$PSScriptRoot\..\..\definitions\scheduledtasks\tasks.ps1"
     Setup-ScheduledTask -DefinitionObject $tasks
@@ -72,21 +67,21 @@ $cmdArgs = $null
 & $functionTestScriptBlock
 
 $cmd = {
-    $tasks = Get-Content "$PSScriptRoot\..\..\definitions\scheduledtasks\tasks.json" | ConvertFrom-Json
+    $tasks = Get-Content "$PSScriptRoot\..\..\definitions\scheduledtasks\tasks.json" | ConvertFrom-Json | % { $_ }
     $tasks | Setup-ScheduledTask
 }
 $cmdArgs = $null
 & $functionTestScriptBlock
 
 $cmd = {
-    $tasks = Get-Item "$PSScriptRoot\..\..\definitions\scheduledtasks\*.ps1" | % { . $_ }
+    $tasks = Get-ChildItem "$PSScriptRoot\..\..\definitions\scheduledtasks\" -File | ? { $_.Extension -eq '.ps1' } | % { . $_.FullName }
     $tasks | Setup-ScheduledTask
 }
 $cmdArgs = $null
 & $functionTestScriptBlock
 
 $cmd = {
-    $tasks = Get-Item "$PSScriptRoot\..\..\definitions\scheduledtasks\*.json" | % { Get-Content $_ | ConvertFrom-Json | % { $_ } }
+    $tasks = Get-ChildItem "$PSScriptRoot\..\..\definitions\scheduledtasks\" -File | ? { $_.Extension -eq '.json' } | % { Get-Content $_.FullName | ConvertFrom-Json | % { $_ } }
     $tasks | Setup-ScheduledTask
 }
 $cmdArgs = $null
