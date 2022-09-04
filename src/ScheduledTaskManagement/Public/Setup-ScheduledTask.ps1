@@ -39,7 +39,14 @@ function Setup-ScheduledTask {
                 }
                 $DefinitionCollectionRaw = $DefinitionFileCollection | % {
                     if ($AsJson) {
-                        Get-Content $_.FullName | ConvertFrom-Json
+                        # If multiple .json files are found, the resulting collection on PS 5.1 is a collection of the arrays of objects within each .json file's content rather than the objects themselves.
+                        # This results in a situation, where when looping over objects within $DefinitionsCollection, only the last object within each array is processed in the pipeline, leading to the serialization and creation / application of only those tasks.
+                        # This behavior appears related to a limitation of `ConvertFrom-Json` prior to PS 6.0: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertfrom-json?view=powershell-7.2#parameters and does not seem to affect parallel CI jobs on PS 7.2.6 .
+                        # To ensure all objects are processed, return each object within the .json array object regardless of PS version.
+                        # Missing tasks: https://dev.azure.com/theohbrothers/ScheduledTaskManagement/_build/results?buildId=437&view=logs&j=a4c7e33e-604c-560c-49b1-4d6828efc661&t=3de151fa-1c49-59eb-ac4b-c29a43df6985
+                        # Missing and incorrect objects: https://dev.azure.com/theohbrothers/ScheduledTaskManagement/_build/results?buildId=448&view=logs&j=a4c7e33e-604c-560c-49b1-4d6828efc661&t=3de151fa-1c49-59eb-ac4b-c29a43df6985
+                        # Expected objects and tasks: https://dev.azure.com/theohbrothers/ScheduledTaskManagement/_build/results?buildId=450&view=logs&j=a4c7e33e-604c-560c-49b1-4d6828efc661&t=3de151fa-1c49-59eb-ac4b-c29a43df6985
+                        Get-Content $_.FullName | ConvertFrom-Json | % { $_ }
                     }else {
                         . $_.FullName
                     }
