@@ -74,17 +74,17 @@ Setup-ScheduledTask -DefinitionFile "C:\path\to\definition.ps1"
 # Via .json definition file
 Setup-ScheduledTask -DefinitionFile "C:\path\to\definition.json" -AsJson
 
-# Via directory containing .ps1 definition files
+# Via directory containing .ps1 definition file(s)
 Setup-ScheduledTask -DefinitionDirectory "C:\path\to\definition\directory\"
 
-# Via directory containing .json definition files
+# Via directory containing .json definition file(s)
 Setup-ScheduledTask -DefinitionDirectory "C:\path\to\definition\directory\" -AsJson
 
 # Via definition object(s)
 $tasks = . "C:\path\to\definition.ps1"                                                                                                                          # From .ps1 definition file
 $tasks = Get-Content "C:\path\to\definition.json" | ConvertFrom-Json | % { $_ }                                                                                 # From .json definition file
-$tasks = Get-ChildItem "C:\path\to\definition\directory\" -File | ? { $_.Extension -eq '.ps1' } | % { . $_.FullName }                                           # From multiple .ps1 definition files
-$tasks = Get-ChildItem "C:\path\to\definition\directory\" -File | ? { $_.Extension -eq '.json' } | % { Get-Content $_.FullName | ConvertFrom-Json | % { $_ } }  # From multiple .json definition files
+$tasks = Get-ChildItem "C:\path\to\definition\directory\" -File | ? { $_.Extension -eq '.ps1' } | % { . $_.FullName }                                           # From directory containing .ps1 definition file(s)
+$tasks = Get-ChildItem "C:\path\to\definition\directory\" -File | ? { $_.Extension -eq '.json' } | % { Get-Content $_.FullName | ConvertFrom-Json | % { $_ } }  # From directory containing .json definition file(s)
 ## Via parameter
 Setup-ScheduledTask -DefinitionObject $tasks
 ## Via pipeline
