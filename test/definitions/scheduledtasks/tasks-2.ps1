@@ -52,13 +52,13 @@
             @{
                 Execute = 'powershell'
                 Argument = @'
--NonInteractive -NoProfile -NoLogo -Command 'New-Item "$env:TEMP\$(Get-Date -UFormat .%s.1)"'
+-NonInteractive -NoProfile -NoLogo -Command 'New-Item "$env:TEMP\$(Get-Date -UFormat .%s-4-1)"'
 '@
             }
             @{
                 Execute = 'powershell'
                 Argument = @'
--NonInteractive -NoProfile -NoLogo -Command 'New-Item "$env:TEMP\$(Get-Date -UFormat .%s.2)"'
+-NonInteractive -NoProfile -NoLogo -Command 'New-Item "$env:TEMP\$(Get-Date -UFormat .%s-4-2)"'
 '@
             }
         )
@@ -105,13 +105,13 @@
             @{
                 Execute = 'powershell'
                 Argument = @'
--NonInteractive -NoProfile -NoLogo -Command 'New-Item "$env:TEMP\$(Get-Date -UFormat .%s.1)"'
+-NonInteractive -NoProfile -NoLogo -Command 'New-Item "$env:TEMP\$(Get-Date -UFormat .%s-5-1)"'
 '@
             }
             @{
                 Execute = 'powershell'
                 Argument = @'
--NonInteractive -NoProfile -NoLogo -Command 'New-Item "$env:TEMP\$(Get-Date -UFormat .%s.2)"'
+-NonInteractive -NoProfile -NoLogo -Command 'New-Item "$env:TEMP\$(Get-Date -UFormat .%s-5-2)"'
 '@
             }
         )
@@ -224,19 +224,19 @@
             @{
                 Execute = 'powershell'
                 Argument = @'
--NonInteractive -NoProfile -NoLogo -Command 'New-Item "$env:TEMP\$(Get-Date -UFormat .%s.1)"'
+-NonInteractive -NoProfile -NoLogo -Command 'New-Item "$env:TEMP\$(Get-Date -UFormat .%s-6-1)"'
 '@
             }
             @{
                 Execute = 'powershell'
                 Argument = @'
--NonInteractive -NoProfile -NoLogo -Command 'New-Item "$env:TEMP\$(Get-Date -UFormat .%s.2)"'
+-NonInteractive -NoProfile -NoLogo -Command 'New-Item "$env:TEMP\$(Get-Date -UFormat .%s-6-2)"'
 '@
             }
             @{
                 Execute = 'powershell'
                 Argument = @'
--NonInteractive -NoProfile -NoLogo -Command 'New-Item "$env:TEMP\$(Get-Date -UFormat .%s.3)"'
+-NonInteractive -NoProfile -NoLogo -Command 'New-Item "$env:TEMP\$(Get-Date -UFormat .%s-6-3)"'
 '@
             }
         )
