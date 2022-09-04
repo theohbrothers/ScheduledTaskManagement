@@ -1,163 +1,163 @@
 [
   {
+    "TaskPath": "\\MyTaskFolder\\",
+    "Principal": {
+      "LogonType": "S4U",
+      "RunLevel": "Highest",
+      "UserId": "myusername"
+    },
     "Settings": {
+      "Disable": false,
       "AllowStartIfOnBatteries": true,
-      "DontStopIfGoingOnBatteries": true,
-      "Disable": false
+      "DontStopIfGoingOnBatteries": true
     },
     "Trigger": [
       {
         "AtStartup": true
       },
       {
-        "DaysInterval": 1,
         "At": {
-          "Minute": 30,
-          "Month": 11,
-          "Day": 30,
-          "Year": 1999,
           "Hour": 17,
-          "Second": 0
+          "Minute": 30,
+          "Second": 0,
+          "Day": 30,
+          "Year": 1999,
+          "Month": 11
         },
-        "Daily": true
+        "Daily": true,
+        "DaysInterval": 1
       }
     ],
-    "TaskName": "MyTaskName1",
-    "Principal": {
-      "UserId": "myusername",
-      "LogonType": "S4U",
-      "RunLevel": "Highest"
-    },
     "Action": [
       {
-        "Argument": "-NonInteractive -NoProfile -NoLogo -Command 'New-Item \"$env:TEMP\\$(Get-Date -UFormat .%s.1)\"'",
-        "Execute": "powershell"
+        "Execute": "powershell",
+        "Argument": "-NonInteractive -NoProfile -NoLogo -Command 'New-Item \"$env:TEMP\\$(Get-Date -UFormat .%s-1-1)\"'"
       },
       {
-        "Argument": "-NonInteractive -NoProfile -NoLogo -Command 'New-Item \"$env:TEMP\\$(Get-Date -UFormat .%s.2)\"'",
-        "Execute": "powershell"
+        "Execute": "powershell",
+        "Argument": "-NonInteractive -NoProfile -NoLogo -Command 'New-Item \"$env:TEMP\\$(Get-Date -UFormat .%s-1-2)\"'"
       }
     ],
-    "TaskPath": "\\MyTaskFolder\\"
+    "TaskName": "MyTaskName1"
   },
   {
+    "TaskPath": "\\MyTaskFolder\\",
+    "Principal": {
+      "LogonType": "S4U",
+      "RunLevel": "Limited",
+      "UserId": "NT AUTHORITY\\SYSTEM"
+    },
     "Settings": {
+      "Disable": false,
       "AllowStartIfOnBatteries": true,
-      "DontStopIfGoingOnBatteries": true,
-      "Disable": false
+      "DontStopIfGoingOnBatteries": true
     },
     "Trigger": [
       {
         "At": {
+          "Hour": 14,
           "Minute": 0,
-          "Month": 11,
+          "Second": 0,
           "Day": 30,
           "Year": 1999,
-          "Hour": 14,
-          "Second": 0
+          "Month": 11
         },
+        "Once": true,
         "RepetitionInterval": {
-          "Minute": 0,
           "Hour": 12,
+          "Minute": 0,
           "Second": 0
-        },
-        "Once": true
+        }
       }
     ],
-    "TaskName": "MyTaskName2",
-    "Principal": {
-      "UserId": "NT AUTHORITY\\SYSTEM",
-      "LogonType": "S4U",
-      "RunLevel": "Limited"
-    },
     "Action": [
       {
-        "Argument": "-NonInteractive -NoProfile -NoLogo -Command 'New-Item \"$env:TEMP\\$(Get-Date -UFormat .%s.1)\"'",
-        "Execute": "powershell"
+        "Execute": "powershell",
+        "Argument": "-NonInteractive -NoProfile -NoLogo -Command 'New-Item \"$env:TEMP\\$(Get-Date -UFormat .%s-2-1)\"'"
       },
       {
-        "Argument": "-NonInteractive -NoProfile -NoLogo -Command 'New-Item \"$env:TEMP\\$(Get-Date -UFormat .%s.2)\"'",
-        "Execute": "powershell"
+        "Execute": "powershell",
+        "Argument": "-NonInteractive -NoProfile -NoLogo -Command 'New-Item \"$env:TEMP\\$(Get-Date -UFormat .%s-2-2)\"'"
       }
     ],
-    "TaskPath": "\\MyTaskFolder\\"
+    "TaskName": "MyTaskName2"
   },
   {
+    "TaskPath": "\\MyTaskFolder\\",
+    "Principal": {
+      "LogonType": "S4U",
+      "RunLevel": "Highest",
+      "UserId": "myusername"
+    },
     "Settings": {
+      "Disable": false,
       "AllowStartIfOnBatteries": true,
-      "DontStopIfGoingOnBatteries": true,
-      "Disable": false
+      "DontStopIfGoingOnBatteries": true
     },
     "Trigger": [
       {
-        "DaysInterval": 1,
         "At": {
-          "Minute": 0,
-          "Month": 11,
-          "Day": 30,
-          "Year": 1999,
           "Hour": 10,
-          "Second": 0
-        },
-        "Daily": true
-      },
-      {
-        "DaysInterval": 1,
-        "At": {
           "Minute": 0,
-          "Month": 11,
+          "Second": 0,
           "Day": 30,
           "Year": 1999,
+          "Month": 11
+        },
+        "Daily": true,
+        "DaysInterval": 1
+      },
+      {
+        "At": {
           "Hour": 14,
-          "Second": 0
-        },
-        "Daily": true
-      },
-      {
-        "DaysInterval": 1,
-        "At": {
           "Minute": 0,
-          "Month": 11,
+          "Second": 0,
           "Day": 30,
           "Year": 1999,
+          "Month": 11
+        },
+        "Daily": true,
+        "DaysInterval": 1
+      },
+      {
+        "At": {
           "Hour": 18,
-          "Second": 0
-        },
-        "Daily": true
-      },
-      {
-        "DaysInterval": 1,
-        "At": {
           "Minute": 0,
-          "Month": 11,
+          "Second": 0,
           "Day": 30,
           "Year": 1999,
-          "Hour": 22,
-          "Second": 0
+          "Month": 11
         },
-        "Daily": true
+        "Daily": true,
+        "DaysInterval": 1
+      },
+      {
+        "At": {
+          "Hour": 22,
+          "Minute": 0,
+          "Second": 0,
+          "Day": 30,
+          "Year": 1999,
+          "Month": 11
+        },
+        "Daily": true,
+        "DaysInterval": 1
       }
     ],
-    "TaskName": "MyTaskName3",
-    "Principal": {
-      "UserId": "myusername",
-      "LogonType": "S4U",
-      "RunLevel": "Highest"
-    },
     "Action": [
       {
-        "Argument": "-NonInteractive -NoProfile -NoLogo -Command 'New-Item \"$env:TEMP\\$(Get-Date -UFormat .%s.1)\"'",
-        "Execute": "powershell"
+        "Execute": "powershell",
+        "Argument": "-NonInteractive -NoProfile -NoLogo -Command 'New-Item \"$env:TEMP\\$(Get-Date -UFormat .%s-3-1)\"'"
       },
       {
-        "Argument": "-NonInteractive -NoProfile -NoLogo -Command 'New-Item \"$env:TEMP\\$(Get-Date -UFormat .%s.2)\"'",
-        "Execute": "powershell"
+        "Execute": "powershell",
+        "Argument": "-NonInteractive -NoProfile -NoLogo -Command 'New-Item \"$env:TEMP\\$(Get-Date -UFormat .%s-3-2)\"'"
       },
       {
-        "Argument": "-NonInteractive -NoProfile -NoLogo -Command 'New-Item \"$env:TEMP\\$(Get-Date -UFormat .%s.3)\"'",
-        "Execute": "powershell"
+        "Execute": "powershell",
+        "Argument": "-NonInteractive -NoProfile -NoLogo -Command 'New-Item \"$env:TEMP\\$(Get-Date -UFormat .%s-3-3)\"'"
       }
     ],
-    "TaskPath": "\\MyTaskFolder\\"
+    "TaskName": "MyTaskName3"
   }
 ]
