@@ -73,7 +73,6 @@
             RunLevel = 'Highest'
         }
     }
-
     @{
         TaskName = 'MyTaskName2'
         TaskPath = '\MyTaskFolder\'
@@ -126,7 +125,6 @@
             RunLevel = 'Limited'
         }
     }
-
     @{
         TaskName = 'MyTaskName3'
         TaskPath = '\MyTaskFolder\'
