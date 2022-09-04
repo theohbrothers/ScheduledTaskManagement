@@ -42,9 +42,9 @@ Install-Module -Name ScheduledTaskManagement -Repository PSGallery -Scope AllUse
 
 ### Scheduled tasks
 
-To create or apply scheduled tasks, first define the properties of each task in `.ps1` or `.json` definition file(s). Then feed definition file path(s), definition directory path(s), or definition array objects to `Setup-ScheduledTask` to create or apply them non-interactively.
+To create or apply scheduled tasks, first define the properties of each task in `.ps1` or `.json` definition file(s). Then feed definition file path(s), definition directory path(s), or definition objects to `Setup-ScheduledTask` to create or apply them non-interactively.
 
-The properties of task definition objects are based off the parameters of the following cmdlets from the [`ScheduledTasks`](https://docs.microsoft.com/en-us/powershell/module/scheduledtasks) module:
+The properties of definition objects are based off the parameters of the following cmdlets from the [`ScheduledTasks`](https://docs.microsoft.com/en-us/powershell/module/scheduledtasks) module:
 
 * [`New-ScheduledTaskTrigger`](https://docs.microsoft.com/en-us/powershell/module/scheduledtasks/new-scheduledtasktrigger)
 * [`New-ScheduledTaskAction`](https://docs.microsoft.com/en-us/powershell/module/scheduledtasks/new-scheduledtaskaction)
