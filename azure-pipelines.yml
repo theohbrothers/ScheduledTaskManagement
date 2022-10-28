@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-    - '*'
+    - master
   tags:
     include:
     - '*'
@@ -9,7 +9,7 @@ pr:
   autoCancel: false
   branches:
     include:
-    - '*'
+    - master
 
 resources:
   repositories:
