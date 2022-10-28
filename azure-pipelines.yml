@@ -35,7 +35,7 @@ stages:
     steps:
     - checkout: self
       submodules: recursive
-    - template: templates/azure-pipelines/entrypoint/windows/continuous-build.yml@PSModulePublisher
+    - template: templates/azure-pipelines/entrypoint/windows/build-test.yml@PSModulePublisher
   - job: windows_2019
     displayName: '[Windows Server 2019] PowerShell Core'
     pool:
@@ -43,7 +43,7 @@ stages:
     steps:
     - checkout: self
       submodules: recursive
-    - template: templates/azure-pipelines/entrypoint/windows/continuous-build.yml@PSModulePublisher
+    - template: templates/azure-pipelines/entrypoint/windows/build-test.yml@PSModulePublisher
   - job: windows_powershell_5_1
     displayName: '[Windows] PowerShell 5.1'
     pool:
@@ -51,9 +51,9 @@ stages:
     steps:
     - checkout: self
       submodules: recursive
-    - template: templates/azure-pipelines/entrypoint/windows/powershell/continuous-build.yml@PSModulePublisher
-- stage: publish
-  displayName: Publish
+    - template: templates/azure-pipelines/entrypoint/windows/powershell/build-test.yml@PSModulePublisher
+- stage: build_publish
+  displayName: Build, Publish
   dependsOn: build_test
   jobs:
   - job: windows_powershell_5_1
@@ -63,11 +63,10 @@ stages:
     steps:
     - checkout: self
       submodules: recursive
-    - template: templates/azure-pipelines/entrypoint/windows/powershell/continuous-build.yml@PSModulePublisher
-    - template: templates/azure-pipelines/entrypoint/windows/powershell/publish.yml@PSModulePublisher
+    - template: templates/azure-pipelines/entrypoint/windows/build-publish.yml@PSModulePublisher
 - stage: release
   displayName: Release
-  dependsOn: publish
+  dependsOn: build_publish
   jobs:
   - job: linux_container
     displayName: '[Linux] [Container] PowerShell Core'
