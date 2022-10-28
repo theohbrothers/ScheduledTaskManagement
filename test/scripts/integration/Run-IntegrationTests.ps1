@@ -11,7 +11,7 @@ $functionTestScriptBlock = {
         "Command: $script:cmd" | Write-Verbose
         "Args:" | Write-Verbose
         $script:cmdArgs | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Verbose
-        for ($i=0; $i -le $iterations-1; $i++) {
+        for ($i=0; $i -le $script:iterations-1; $i++) {
             "Iteration: $($i+1)" | Write-Host
             if ($script:cmdArgs) {
                 $stdout = & $script:cmd @script:cmdArgs
