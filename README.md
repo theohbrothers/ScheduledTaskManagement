@@ -19,13 +19,9 @@ A PowerShell module for non-interactive management of Scheduled Tasks.
 
 ## Installation
 
-First, ensure [`PSGallery`](https://www.powershellgallery.com/) is registered as a PowerShell repository:
+The module can either be [*installed*](#via-install), or [*imported*](#via-import) from a local copy of this git repository.
 
-```powershell
-Register-PSRepository -Default -Verbose
-```
-
-To install the module:
+### via Install
 
 ```powershell
 # Latest, for the current user
@@ -37,6 +33,24 @@ Install-Module -Name ScheduledTaskManagement -Repository PSGallery -RequiredVers
 # Latest, for all users
 Install-Module -Name ScheduledTaskManagement -Repository PSGallery -Scope AllUsers -Verbose
 ```
+
+If prompted to trust the repository, type `Y` and `enter`.
+
+### via Import
+
+```powershell
+# Clone the git repository
+git clone https://github.com/startersclan/ScheduledTaskManagement.git
+cd ScheduledTaskManagement\
+
+# Checkout version to use
+git checkout vx.x.x
+
+# Import the module
+Import-Module .\src\ScheduledTaskManagement\ScheduledTaskManagement.psm1 -Force -Verbose
+```
+
+The module is now ready for use.
 
 ## Usage
 
