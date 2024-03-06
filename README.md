@@ -40,7 +40,7 @@ If prompted to trust the repository, type `Y` and `enter`.
 
 ```powershell
 # Clone the git repository
-git clone https://github.com/startersclan/ScheduledTaskManagement.git
+git clone https://github.com/theohbrothers/ScheduledTaskManagement.git
 cd ScheduledTaskManagement\
 
 # Checkout version to use
