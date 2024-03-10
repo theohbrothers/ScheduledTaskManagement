@@ -63,7 +63,7 @@ stages:
     steps:
     - checkout: self
       submodules: recursive
-    - template: templates/azure-pipelines/entrypoint/windows/build-publish.yml@PSModulePublisher
+    - template: templates/azure-pipelines/entrypoint/windows/powershell/build-publish.yml@PSModulePublisher
 - stage: release
   displayName: Release
   dependsOn: build_publish
