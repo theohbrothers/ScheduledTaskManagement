@@ -47,6 +47,14 @@ stages:
   - job: windows_powershell_5_1
     displayName: '[Windows] PowerShell 5.1'
     pool:
+      vmImage: windows-2022
+    steps:
+    - checkout: self
+      submodules: recursive
+    - template: templates/azure-pipelines/entrypoint/windows/powershell/build-test.yml@PSModulePublisher
+  - job: windows_powershell_5_1_windows_2019
+    displayName: '[Windows Server 2019] PowerShell 5.1'
+    pool:
       vmImage: windows-2019
     steps:
     - checkout: self
