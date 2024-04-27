@@ -64,8 +64,8 @@ stages:
   displayName: Build, Publish
   dependsOn: build_test
   jobs:
-  - job: windows_powershell_5_1
-    displayName: '[Windows] PowerShell 5.1'
+  - job: windows_powershell_5_1_windows_2019
+    displayName: '[Windows Server 2019] PowerShell 5.1'
     pool:
       vmImage: windows-2019
     steps:
