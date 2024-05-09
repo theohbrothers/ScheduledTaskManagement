@@ -2,7 +2,6 @@
 param()
 
 Set-StrictMode -Version Latest
-$VerbosePreference = 'Continue'
 $global:PesterDebugPreference_ShowFullErrors = $true
 
 try {
@@ -15,25 +14,23 @@ try {
     # Run unit tests
     "Running unit tests" | Write-Host
     $testFailed = $false
-    $unitResult = Invoke-Pester -Script "$PSScriptRoot\..\src\ScheduledTaskManagement" -PassThru
-    if ($unitResult.FailedCount -gt 0) {
-        "$($unitResult.FailedCount) tests failed." | Write-Warning
-        $testFailed = $true
+    $res = Invoke-Pester -Script "$PSScriptRoot\..\src\ScheduledTaskManagement" -Tag 'Unit' -PassThru
+    if ($res.FailedCount -gt 0) {
+        "$( $res.FailedCount ) unit tests failed." | Write-Host
     }
 
     # Run integration tests
     "Running integration tests" | Write-Host
-    $integratedFailedCount = & "$PSScriptRoot\scripts\integration\Run-IntegrationTests.ps1"
-    if ($integratedFailedCount -gt 0) {
-        $testFailed = $true
+    $res2 = Invoke-Pester -Script "$PSScriptRoot\..\src\ScheduledTaskManagement" -Tag 'Integration' -PassThru
+    if ($res2.FailedCount -gt 0) {
+        "$( $res2.FailedCount ) integration tests failed." | Write-Host
     }
 
     "Listing test artifacts" | Write-Host
     git ls-files --others --exclude-standard
 
-    "End of tests" | Write-Host
-    if ($testFailed) {
-        throw "One or more tests failed."
+    if (($res -and $res.FailedCount -gt 0) -or ($res2 -and $res2.FailedCount)) {
+        throw
     }
 }catch {
     throw
