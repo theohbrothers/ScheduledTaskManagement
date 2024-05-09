@@ -1,39 +1,66 @@
 [CmdletBinding()]
-param()
+param (
+    [string]$Tag = ''
+)
+$moduleItem = Get-Item "$PSScriptRoot/../src/*/*.psm1"
+$MODULE_PATH = $moduleItem.FullName
+$MODULE_DIR = $moduleItem.Directory
+$MODULE_NAME = $moduleItem.BaseName
 
 Set-StrictMode -Version Latest
+$VerbosePreference = 'Continue'
 $global:PesterDebugPreference_ShowFullErrors = $true
 
 try {
     Push-Location $PSScriptRoot
 
-    # Install test dependencies
-    "Installing test dependencies" | Write-Host
-    & "$PSScriptRoot\scripts\dep\Install-TestDependencies.ps1" > $null
+    # Install Pester if needed
+    "Checking Pester version" | Write-Host
+    $pesterMinimumVersion = [version]'4.0.0'
+    $pesterMaximumVersion = [version]'4.10.1'
+    $pester = Get-Module 'Pester' -ListAvailable -ErrorAction SilentlyContinue
+    if ( !$pester -or !($pester.Version | ? { $_ -ge $pesterMinimumVersion -and $_ -le $pesterMaximumVersion }) ) {
+        "Installing Pester" | Write-Host
+        Install-Module -Name 'Pester' -Repository 'PSGallery' -MinimumVersion $pesterMinimumVersion -MaximumVersion $pesterMaximumVersion -Scope CurrentUser -Force
+    }
+    $pester = Get-Module Pester -ListAvailable
+    $pester | Out-String | Write-Verbose
+    $pester | Select-Object -First 1 | Import-Module # Force import to ensure environment uses the correct version of Pester
 
-    # Run unit tests
-    "Running unit tests" | Write-Host
-    $testFailed = $false
-    $res = Invoke-Pester -Script "$PSScriptRoot\..\src\ScheduledTaskManagement" -Tag 'Unit' -PassThru
-    if ($res.FailedCount -gt 0) {
-        "$( $res.FailedCount ) unit tests failed." | Write-Host
+    # Import the project module
+    Import-Module $MODULE_PATH -Force
+
+    if ($Tag) {
+        # Run Unit Tests
+        $res = Invoke-Pester -Script $MODULE_DIR -Tag $Tag -PassThru -ErrorAction Stop
+        if (!($res.PassedCount -eq $res.TotalCount)) {
+            "$($res.TotalCount - $res.PassedCount) unit tests failed." | Write-Host
+        }
+        if (!($res.PassedCount -eq $res.TotalCount)) {
+            throw
+        }
+    }else {
+        # Run Unit Tests
+        $res = Invoke-Pester -Script $MODULE_DIR -Tag 'Unit' -PassThru -ErrorAction Stop
+        if (!($res.PassedCount -eq $res.TotalCount)) {
+            "$($res.TotalCount - $res.PassedCount) integration tests failed." | Write-Host
+        }
+
+        # Run Integration Tests
+        $res2 = Invoke-Pester -Script $MODULE_DIR -Tag 'Integration' -PassThru -ErrorAction Stop
+        if (!($res2.PassedCount -eq $res2.TotalCount)) {
+            "$($res2.TotalCount - $res2.PassedCount) integration tests failed." | Write-Host
+        }
+
+        if (!($res.PassedCount -eq $res.TotalCount) -or !($res2.PassedCount -eq $res2.TotalCount)) {
+            throw
+        }
     }
 
-    # Run integration tests
-    "Running integration tests" | Write-Host
-    $res2 = Invoke-Pester -Script "$PSScriptRoot\..\src\ScheduledTaskManagement" -Tag 'Integration' -PassThru
-    if ($res2.FailedCount -gt 0) {
-        "$( $res2.FailedCount ) integration tests failed." | Write-Host
-    }
-
-    "Listing test artifacts" | Write-Host
-    git ls-files --others --exclude-standard
-
-    if (($res -and $res.FailedCount -gt 0) -or ($res2 -and $res2.FailedCount)) {
-        throw
-    }
 }catch {
     throw
 }finally {
+    "Listing test artifacts" | Write-Host
+    git ls-files --others --exclude-standard
     Pop-Location
 }

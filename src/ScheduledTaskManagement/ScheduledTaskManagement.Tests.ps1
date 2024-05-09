@@ -1,15 +1,10 @@
 Describe "ScheduledTaskManagement" -Tag 'Integration' {
     BeforeAll {
-        $moduleDir = $PSScriptRoot
-        Import-Module $moduleDir/ScheduledTaskManagement.psm1 -Force
-        $testDir = "$moduleDir\..\..\test"
     }
     BeforeEach {
-        Push-Location $testDir
     }
     AfterEach {
         $script:stdout | Out-String -Stream | % { $_.Trim() } | ? { $_ } | Write-Host
-        Pop-Location
     }
     It "Runs Setup-ScheduledTask -DefinitionFile" {
         $script:stdout = Setup-ScheduledTask -DefinitionFile "definitions\scheduledtasks\tasks-1.ps1"
