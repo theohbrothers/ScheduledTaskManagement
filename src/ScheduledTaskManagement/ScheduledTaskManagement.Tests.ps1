@@ -1,5 +1,6 @@
 Describe "ScheduledTaskManagement" -Tag 'Integration' {
     BeforeAll {
+        $ErrorView = 'NormalView'
     }
     BeforeEach {
     }
