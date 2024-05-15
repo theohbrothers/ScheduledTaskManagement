@@ -47,7 +47,7 @@ try {
         # Run Unit Tests
         $res = Invoke-Pester -Script $MODULE_DIR -Tag 'Unit' -PassThru -ErrorAction Stop
         if (!($res.PassedCount -eq $res.TotalCount)) {
-            "$($res.TotalCount - $res.PassedCount) integration tests did not pass." | Write-Host
+            "$($res.TotalCount - $res.PassedCount) unit tests did not pass." | Write-Host
         }
 
         # Run Integration Tests
