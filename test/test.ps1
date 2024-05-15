@@ -11,7 +11,8 @@ $script:PesterDebugPreference_ShowFullErrors = $true
 
 try {
     # Initialize variables
-    $moduleItem = Get-Item "$PSScriptRoot/../src/*/*.psm1"
+    $moduleItem = if (Test-Path "$PSScriptRoot/../src/*/*.psd1" -PathType Leaf) { Get-Item "$PSScriptRoot/../src/*/*.psd1" }
+                  elseif (Test-Path "$PSScriptRoot/../src/*/*.psm1" -PathType Leaf) { Get-Item "$PSScriptRoot/../src/*/*.psm1" }
     $MODULE_PATH = $moduleItem.FullName
     $MODULE_DIR = $moduleItem.Directory
     $MODULE_NAME = $moduleItem.BaseName
