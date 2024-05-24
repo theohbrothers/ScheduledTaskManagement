@@ -6,7 +6,6 @@ param (
 )
 
 Set-StrictMode -Version Latest
-$VerbosePreference = 'Continue'
 $script:PesterDebugPreference_ShowFullErrors = $true
 
 try {
