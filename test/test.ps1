@@ -25,7 +25,7 @@ try {
     $pester = Get-Module 'Pester' -ListAvailable -ErrorAction SilentlyContinue
     if (!$pester -or !($pester | ? { $_.Version -ge $pesterMinimumVersion -and $_.Version -le $pesterMaximumVersion })) {
         "Installing Pester" | Write-Host
-        Install-Module -Name 'Pester' -Repository 'PSGallery' -MinimumVersion $pesterMinimumVersion -MaximumVersion $pesterMaximumVersion -Scope CurrentUser -Force
+        Install-Module -Name 'Pester' -Repository 'PSGallery' -MinimumVersion $pesterMinimumVersion -MaximumVersion $pesterMaximumVersion -Scope CurrentUser -Force -SkipPublisherCheck
     }
     $pester = Get-Module Pester -ListAvailable
     $pester | Out-String | Write-Verbose
