@@ -80,7 +80,7 @@ stages:
     displayName: '[Ubuntu 22.04] [Container] PowerShell Core'
     pool:
       vmImage: ubuntu-22.04
-    container: joeltimothyoh/powershell:7.3.9-ubuntu-22.04-git
+    container: theohbrothers/docker-powershell:7.2-ubuntu-22.04-git
     steps:
     - checkout: self
       submodules: recursive
