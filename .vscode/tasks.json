@@ -3,6 +3,7 @@
     // for the documentation about the tasks.json format
     "version": "2.0.0",
     "inputs": [
+        // PSModulePublisher
         {
             "id": "NUGET_API_KEY",
             "description": "NUGET_API_KEY?",
@@ -28,59 +29,59 @@
             "type": "pickString",
             "options": [
                 "true",
-                "false",
+                "false"
             ],
             "default": "true"
-        },
+        }
     ],
     "tasks": [
         {
-            "label": "Build, Test, Publish ScheduledTaskManagement (pwsh)",
+            "label": "[PSModulePublisher] Build, Test, Publish module (pwsh)",
             "type": "shell",
-            "command": "NUGET_API_KEY='${input:NUGET_API_KEY}' MODULE_VERSION='${input:MODULE_VERSION}' pwsh -NoLogo -NonInteractive -NoProfile -Command 'Import-Module ./src/ScheduledTaskManagement/ScheduledTaskManagement.psm1 -Force; Import-Module ./build/PSModulePublisher/src/PSModulePublisher/PSModulePublisher.psm1 -Force; Invoke-PSModulePublisher -Repository \"${input:Repository}\" -DryRun:$([System.Convert]::ToBoolean(\"${input:DryRun}\"))'",
+            "command": "NUGET_API_KEY='${input:NUGET_API_KEY}' MODULE_VERSION='${input:MODULE_VERSION}' pwsh -NoLogo -NonInteractive -NoProfile -Command '$VerbosePreference = \"Continue\"; Import-Module ./build/PSModulePublisher/src/PSModulePublisher/PSModulePublisher.psm1 -Force; Invoke-PSModulePublisher -Repository \"${input:Repository}\" -DryRun:$([System.Convert]::ToBoolean(\"${input:DryRun}\"))'",
             "group": "build"
         },
         {
-            "label": "Build, Test, Publish ScheduledTaskManagement (powershell)",
+            "label": "[PSModulePublisher] Build, Test, Publish module (powershell)",
             "type": "shell",
-            "command": "NUGET_API_KEY='${input:NUGET_API_KEY}' MODULE_VERSION='${input:MODULE_VERSION}' powershell -NoLogo -NonInteractive -NoProfile -Command 'Import-Module ./src/ScheduledTaskManagement/ScheduledTaskManagement.psm1 -Force; Import-Module ./build/PSModulePublisher/src/PSModulePublisher/PSModulePublisher.psm1 -Force; Invoke-PSModulePublisher -Repository \"${input:Repository}\" -DryRun:$([System.Convert]::ToBoolean(\"${input:DryRun}\"))'",
+            "command": "NUGET_API_KEY='${input:NUGET_API_KEY}' MODULE_VERSION='${input:MODULE_VERSION}' powershell -NoLogo -NonInteractive -NoProfile -Command '$VerbosePreference = \"Continue\"; Import-Module ./build/PSModulePublisher/src/PSModulePublisher/PSModulePublisher.psm1 -Force; Invoke-PSModulePublisher -Repository \"${input:Repository}\" -DryRun:$([System.Convert]::ToBoolean(\"${input:DryRun}\"))'",
             "group": "build"
         },
         {
-            "label": "Build ScheduledTaskManagement (pwsh)",
+            "label": "[PSModulePublisher] Build module (pwsh)",
             "type": "shell",
-            "command": "MODULE_VERSION='${input:MODULE_VERSION}' pwsh -NoLogo -NonInteractive -NoProfile -Command 'Import-Module ./src/ScheduledTaskManagement/ScheduledTaskManagement.psm1 -Force; Import-Module ./build/PSModulePublisher/src/PSModulePublisher/PSModulePublisher.psm1 -Force; Invoke-Build'",
+            "command": "MODULE_VERSION='${input:MODULE_VERSION}' pwsh -NoLogo -NonInteractive -NoProfile -Command '$VerbosePreference = \"Continue\"; Import-Module ./build/PSModulePublisher/src/PSModulePublisher/PSModulePublisher.psm1 -Force; Invoke-Build'",
             "group": "build"
         },
         {
-            "label": "Build ScheduledTaskManagement (powershell)",
+            "label": "[PSModulePublisher] Build module (powershell)",
             "type": "shell",
-            "command": "MODULE_VERSION='${input:MODULE_VERSION}' powershell -NoLogo -NonInteractive -NoProfile -Command 'Import-Module ./src/ScheduledTaskManagement/ScheduledTaskManagement.psm1 -Force; Import-Module ./build/PSModulePublisher/src/PSModulePublisher/PSModulePublisher.psm1 -Force; Invoke-Build'",
+            "command": "MODULE_VERSION='${input:MODULE_VERSION}' powershell -NoLogo -NonInteractive -NoProfile -Command '$VerbosePreference = \"Continue\"; Import-Module ./build/PSModulePublisher/src/PSModulePublisher/PSModulePublisher.psm1 -Force; Invoke-Build'",
             "group": "build"
         },
         {
-            "label": "Test ScheduledTaskManagement (pwsh)",
+            "label": "[PSModulePublisher] Test module (pwsh)",
             "type": "shell",
-            "command": "MODULE_VERSION='${input:MODULE_VERSION}' pwsh -NoLogo -NonInteractive -NoProfile -Command 'Import-Module ./src/ScheduledTaskManagement/ScheduledTaskManagement.psm1 -Force; Import-Module ./build/PSModulePublisher/src/PSModulePublisher/PSModulePublisher.psm1 -Force; Invoke-Test -ModuleManifestPath ./src/ScheduledTaskManagement/ScheduledTaskManagement.psd1'",
+            "command": "MODULE_VERSION='${input:MODULE_VERSION}' pwsh -NoLogo -NonInteractive -NoProfile -Command '$VerbosePreference = \"Continue\"; Import-Module ./build/PSModulePublisher/src/PSModulePublisher/PSModulePublisher.psm1 -Force; Invoke-Test'",
             "group": "build"
         },
         {
-            "label": "Test ScheduledTaskManagement (powershell)",
+            "label": "[PSModulePublisher] Test module (powershell)",
             "type": "shell",
-            "command": "MODULE_VERSION='${input:MODULE_VERSION}' powershell -NoLogo -NonInteractive -NoProfile -Command 'Import-Module ./src/ScheduledTaskManagement/ScheduledTaskManagement.psm1 -Force; Import-Module ./build/PSModulePublisher/src/PSModulePublisher/PSModulePublisher.psm1 -Force; Invoke-Test -ModuleManifestPath ./src/ScheduledTaskManagement/ScheduledTaskManagement.psd1'",
+            "command": "MODULE_VERSION='${input:MODULE_VERSION}' powershell -NoLogo -NonInteractive -NoProfile -Command '$VerbosePreference = \"Continue\"; Import-Module ./build/PSModulePublisher/src/PSModulePublisher/PSModulePublisher.psm1 -Force; Invoke-Test'",
             "group": "build"
         },
         {
-            "label": "Publish ScheduledTaskManagement (pwsh)",
+            "label": "[PSModulePublisher] Publish module (pwsh)",
             "type": "shell",
-            "command": "NUGET_API_KEY='${input:NUGET_API_KEY}' MODULE_VERSION='${input:MODULE_VERSION}' pwsh -NoLogo -NonInteractive -NoProfile -Command 'Import-Module ./src/ScheduledTaskManagement/ScheduledTaskManagement.psm1 -Force; Import-Module ./build/PSModulePublisher/src/PSModulePublisher/PSModulePublisher.psm1 -Force; Invoke-Publish -ModuleManifestPath ./src/ScheduledTaskManagement/ScheduledTaskManagement.psd1 -Repository \"${input:Repository}\" -DryRun:$([System.Convert]::ToBoolean(\"${input:DryRun}\"))'",
+            "command": "NUGET_API_KEY='${input:NUGET_API_KEY}' MODULE_VERSION='${input:MODULE_VERSION}' pwsh -NoLogo -NonInteractive -NoProfile -Command '$VerbosePreference = \"Continue\"; Import-Module ./build/PSModulePublisher/src/PSModulePublisher/PSModulePublisher.psm1 -Force; Invoke-Publish -Repository \"${input:Repository}\" -DryRun:$([System.Convert]::ToBoolean(\"${input:DryRun}\"))'",
             "group": "build"
         },
         {
-            "label": "Publish ScheduledTaskManagement (powershell)",
+            "label": "[PSModulePublisher] Publish module (powershell)",
             "type": "shell",
-            "command": "NUGET_API_KEY='${input:NUGET_API_KEY}' MODULE_VERSION='${input:MODULE_VERSION}' powershell -NoLogo -NonInteractive -NoProfile -Command 'Import-Module ./src/ScheduledTaskManagement/ScheduledTaskManagement.psm1 -Force; Import-Module ./build/PSModulePublisher/src/PSModulePublisher/PSModulePublisher.psm1 -Force; Invoke-Publish -ModuleManifestPath ./src/ScheduledTaskManagement/ScheduledTaskManagement.psd1 -Repository \"${input:Repository}\" -DryRun:$([System.Convert]::ToBoolean(\"${input:DryRun}\"))'",
+            "command": "NUGET_API_KEY='${input:NUGET_API_KEY}' MODULE_VERSION='${input:MODULE_VERSION}' powershell -NoLogo -NonInteractive -NoProfile -Command '$VerbosePreference = \"Continue\"; Import-Module ./build/PSModulePublisher/src/PSModulePublisher/PSModulePublisher.psm1 -Force; Invoke-Publish -Repository \"${input:Repository}\" -DryRun:$([System.Convert]::ToBoolean(\"${input:DryRun}\"))'",
             "group": "build"
-        },
+        }
     ]
 }
