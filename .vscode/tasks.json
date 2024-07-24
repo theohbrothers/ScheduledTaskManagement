@@ -32,6 +32,111 @@
                 "false"
             ],
             "default": "true"
+        },
+        // PSRepositoryReleaseManager
+        {
+            "id": "PROJECT_DIRECTORY",
+            "description": "PROJECT_DIRECTORY?",
+            "type": "promptString",
+            "default": "${workspaceFolder}"
+        },
+        {
+            "id": "RELEASE_TAG_REF",
+            "description": "RELEASE_TAG_REF?",
+            "type": "promptString",
+            "default": "vx.x.x | branch | HEAD | remote/branch | commit-hash"
+        },
+        {
+            "id": "RELEASE_NOTES_VARIANT",
+            "description": "RELEASE_NOTES_VARIANT?",
+            "type": "pickString",
+            "options": [
+                "Changes-HashSubject-Merges",
+                "Changes-HashSubject-NoMerges-Categorized",
+                "Changes-HashSubject-NoMerges-CategorizedSorted",
+                "Changes-HashSubject-NoMerges",
+                "Changes-HashSubject",
+                "Changes-HashSubjectAuthor-NoMerges-Categorized",
+                "Changes-HashSubjectAuthor-NoMerges-CategorizedSorted",
+                "VersionDate-HashSubject-Merges",
+                "VersionDate-HashSubject-NoMerges-Categorized",
+                "VersionDate-HashSubject-NoMerges-CategorizedSorted",
+                "VersionDate-HashSubject-NoMerges",
+                "VersionDate-HashSubject",
+                "VersionDate-HashSubjectAuthor-NoMerges-Categorized",
+                "VersionDate-HashSubjectAuthor-NoMerges-CategorizedSorted",
+                "VersionDate-Subject-Merges",
+                "VersionDate-Subject-NoMerges-Categorized",
+                "VersionDate-Subject-NoMerges-CategorizedSorted",
+                "VersionDate-Subject-NoMerges",
+                "VersionDate-Subject",
+                "VersionDate-SubjectAuthor-NoMerges-Categorized",
+                "VersionDate-SubjectAuthor-NoMerges-CategorizedSorted"
+            ],
+            "default": "VersionDate-HashSubject-NoMerges-CategorizedSorted"
+        },
+        {
+            "id": "RELEASE_NOTES_PATH",
+            "description": "RELEASE_NOTES_PATH?",
+            "type": "promptString",
+            "default": "${workspaceFolder}/.release-notes.md"
+        },
+        {
+            "id": "GITHUB_API_TOKEN",
+            "description": "GITHUB_API_TOKEN?",
+            "type": "promptString",
+            "default": "xxx",
+            "password": true
+        },
+        {
+            "id": "RELEASE_NAMESPACE",
+            "description": "RELEASE_NAMESPACE?",
+            "type": "promptString",
+            "default": "mygithubnamespace"
+        },
+        {
+            "id": "RELEASE_REPOSITORY",
+            "description": "RELEASE_REPOSITORY?",
+            "type": "promptString",
+            "default": "my-project"
+        },
+        {
+            "id": "RELEASE_NAME",
+            "description": "RELEASE_NAME?",
+            "type": "promptString",
+            "default": "My release name | vx.x.x"
+        },
+        // {
+        //     "id": "RELEASE_NOTES_CONTENT",
+        //     "description": "RELEASE_NOTES_CONTENT?",
+        //     "type": "promptString",
+        //     "default": "My multi-line release notes",
+        // },
+        {
+            "id": "RELEASE_DRAFT",
+            "description": "RELEASE_DRAFT?",
+            "type": "pickString",
+            "options": [
+                "true",
+                "false"
+            ],
+            "default": "false"
+        },
+        {
+            "id": "RELEASE_PRERELEASE",
+            "description": "RELEASE_PRERELEASE?",
+            "type": "pickString",
+            "options": [
+                "true",
+                "false"
+            ],
+            "default": "false"
+        },
+        {
+            "id": "RELEASE_ASSETS",
+            "description": "RELEASE_ASSETS?",
+            "type": "promptString",
+            "default": "path/to/assets/*"
         }
     ],
     "tasks": [
@@ -81,6 +186,30 @@
             "label": "[PSModulePublisher] Publish module (powershell)",
             "type": "shell",
             "command": "NUGET_API_KEY='${input:NUGET_API_KEY}' MODULE_VERSION='${input:MODULE_VERSION}' powershell -NoLogo -NonInteractive -NoProfile -Command '$VerbosePreference = \"Continue\"; Import-Module ./build/PSModulePublisher/src/PSModulePublisher/PSModulePublisher.psm1 -Force; Invoke-Publish -Repository \"${input:Repository}\" -DryRun:$([System.Convert]::ToBoolean(\"${input:DryRun}\"))'",
+            "group": "build"
+        },
+        {
+            "label": "[PSRepositoryReleaseManager] Generate release notes (pwsh)",
+            "type": "shell",
+            "command": "PROJECT_DIRECTORY='${input:PROJECT_DIRECTORY}' RELEASE_TAG_REF='${input:RELEASE_TAG_REF}' RELEASE_NOTES_VARIANT='${input:RELEASE_NOTES_VARIANT}' RELEASE_NOTES_PATH='${input:RELEASE_NOTES_PATH}' pwsh -NoLogo -NonInteractive -NoProfile -Command '$VerbosePreference = \"Continue\"; ./build/PSRepositoryReleaseManager/src/scripts/ci/Invoke-Generate.ps1'",
+            "group": "build"
+        },
+        {
+            "label": "[PSRepositoryReleaseManager] Generate release notes (powershell)",
+            "type": "shell",
+            "command": "PROJECT_DIRECTORY='${input:PROJECT_DIRECTORY}' RELEASE_TAG_REF='${input:RELEASE_TAG_REF}' RELEASE_NOTES_VARIANT='${input:RELEASE_NOTES_VARIANT}' RELEASE_NOTES_PATH='${input:RELEASE_NOTES_PATH}' powershell -NoLogo -NonInteractive -NoProfile -Command '$VerbosePreference = \"Continue\"; ./build/PSRepositoryReleaseManager/src/scripts/ci/Invoke-Generate.ps1'",
+            "group": "build"
+        },
+        {
+            "label": "[PSRepositoryReleaseManager] Create release (pwsh)",
+            "type": "shell",
+            "command": "GITHUB_API_TOKEN='${input:GITHUB_API_TOKEN}' PROJECT_DIRECTORY='${input:PROJECT_DIRECTORY}' RELEASE_TAG_REF='${input:RELEASE_TAG_REF}' RELEASE_NAMESPACE='${input:RELEASE_NAMESPACE}' RELEASE_REPOSITORY='${input:RELEASE_REPOSITORY}' RELEASE_NAME='${input:RELEASE_NAME}' RELEASE_DRAFT='${input:RELEASE_DRAFT}' RELEASE_PRERELEASE='${input:RELEASE_PRERELEASE}' RELEASE_ASSETS='${input:RELEASE_ASSETS}' pwsh -NoLogo -NonInteractive -NoProfile -Command '$VerbosePreference = \"Continue\"; ./build/PSRepositoryReleaseManager/src/scripts/ci/Invoke-Release.ps1'",
+            "group": "build"
+        },
+        {
+            "label": "[PSRepositoryReleaseManager] Create release (powershell)",
+            "type": "shell",
+            "command": "GITHUB_API_TOKEN='${input:GITHUB_API_TOKEN}' PROJECT_DIRECTORY='${input:PROJECT_DIRECTORY}' RELEASE_TAG_REF='${input:RELEASE_TAG_REF}' RELEASE_NAMESPACE='${input:RELEASE_NAMESPACE}' RELEASE_REPOSITORY='${input:RELEASE_REPOSITORY}' RELEASE_NAME='${input:RELEASE_NAME}' RELEASE_DRAFT='${input:RELEASE_DRAFT}' RELEASE_PRERELEASE='${input:RELEASE_PRERELEASE}' RELEASE_ASSETS='${input:RELEASE_ASSETS}' powershell -NoLogo -NonInteractive -NoProfile -Command '$VerbosePreference = \"Continue\"; ./build/PSRepositoryReleaseManager/src/scripts/ci/Invoke-Release.ps1'",
             "group": "build"
         }
     ]
