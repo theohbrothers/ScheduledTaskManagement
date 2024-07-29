@@ -22,7 +22,7 @@ resources:
     type: github
     name: theohbrothers/PSRepositoryReleaseManager
     endpoint: theohbrothers
-    ref: refs/tags/v0.14.0
+    ref: refs/tags/v0.15.0
 
 stages:
 - stage: build_test
