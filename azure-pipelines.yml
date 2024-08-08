@@ -17,7 +17,7 @@ resources:
     type: github
     name: theohbrothers/PSModulePublisher
     endpoint: theohbrothers                   # Check for your 'Type: Github' connection under 'Project Settings' > 'Service connections'
-    ref: refs/tags/v0.10.2
+    ref: refs/tags/v0.11.0
   - repository: PSRepositoryReleaseManager
     type: github
     name: theohbrothers/PSRepositoryReleaseManager
