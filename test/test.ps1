@@ -2,7 +2,7 @@
 param (
     [Parameter(Mandatory=$false)]
     [ValidateNotNullOrEmpty()]
-    [string]$Tag = ''
+    [string]$Tag
 )
 
 Set-StrictMode -Version Latest
@@ -67,7 +67,7 @@ try {
     throw
 }finally {
     "Listing test artifacts" | Write-Host
-    Push-Location "$(git rev-parse --show-toplevel)"
+    Push-Location (git rev-parse --show-toplevel)
     git ls-files --others --exclude-standard
     Pop-Location
 
